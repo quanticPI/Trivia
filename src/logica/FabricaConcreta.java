@@ -3,14 +3,12 @@ package logica;
 public class FabricaConcreta extends FabricaPregunta {
 
 	public Pregunta crearPregunta(int tipo){
-		switch(tipo){
-		case tipo = 1:
-			return new PreguntaTF();
-		case tipo = 2:
-			return new PreguntaAbierta();
-		case tipo = 3:
-			return new PreguntaElegir();
+		if(tipo == Pregunta.TRUEFALSE)
+			return new PreguntaTF(tipo);
+		else
+			if (tipo == Pregunta.ABIERTA)
+				return new PreguntaAbierta(tipo);
+			else
+				return new PreguntaElegir(4,tipo);
 		}
-	}
-	
 }

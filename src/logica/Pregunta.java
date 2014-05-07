@@ -8,31 +8,13 @@ public abstract class Pregunta {
 	//numero de respuestas
 	//private int num_respuestas;
 	//tipos de juego
+	public static final int SINTIPO = 0;
 	public static final int TRUEFALSE = 1;
 	public static final int ABIERTA = 2;
 	public static final int ELEGIR = 3;
-	private int tipo; 
+	protected int tipo; 
 	//el texto de la pregunta
-	//protected String textoPregunta;
-	//array para las posibles respuestas
-	//private String[] respuestas;
-	// indice de la respuesta correcta
-	//private int respuestaCorrecta;
-	
-	//Constructor
-	/*
-	protected abstract Pregunta(int num_preguntas, int tipo){
-		
-		int i;
-		this.textoPregunta = "";
-		this.respuestaCorrecta = 0;
-		if(tipo == TRUEFALSE || tipo == ABIERTA)
-			respuestas[0] = "";
-		else for(i=0; i<num_preguntas; i++)
-					setRespuestaPosible("", i);
-		this.tipo = tipo;
-		
-	}*/
+	protected String textoPregunta;
 	
 	//Fijar la pregunta
 	public abstract void setPregunta(String p);
@@ -41,29 +23,25 @@ public abstract class Pregunta {
 	public abstract String getPregunta();
 	
 	//fijar la respuesta correcta
-	public abstract void setRespuesta(String res);
+	//public abstract void setRespuesta(String res);
 	//{
 	//	this.respuestaCorrecta = num;
 	//}
 	
-	//fijar una respuesta posible
-	public void setRespuestaPosible(String text, int num){
-		respuestas[num] = text;
-	}
+	
 	
 	//respuesta TRUEFALSE
-	public void setTrueOrFalse(String s){
-		setRespuestaPosible(s, 0);
-	}
+	//public void setTrueOrFalse(String s){
+	//	setRespuestaPosible(s, 0);
+	//}
 	
 	//respuesta abierta
-	public void setRespuestaAbierta(String s){
-		setRespuestaPosible(s, 0);
-	}
+	//public void setRespuestaAbierta(String s){
+	//	setRespuestaPosible(s, 0);
+	//}	
 	
-	//devolver respuesta correcta
-	public String responder(){
-		return this.respuestas[respuestaCorrecta];
+	public void setTipo(int tipo){
+		this.tipo = tipo;
 	}
 	
 	public int getTipo(){
