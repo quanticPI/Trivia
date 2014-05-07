@@ -3,7 +3,7 @@ package logica;
 /**
  * @author Nikolay
  */
-public class Pregunta {
+public abstract class Pregunta {
 	
 	//numero de respuestas
 	//private int num_respuestas;
@@ -13,14 +13,16 @@ public class Pregunta {
 	public static final int ELEGIR = 3;
 	private int tipo; 
 	//el texto de la pregunta
-	private String textoPregunta;
+	//protected String textoPregunta;
 	//array para las posibles respuestas
-	private String[] respuestas;
+	//private String[] respuestas;
 	// indice de la respuesta correcta
-	private int respuestaCorrecta;
+	//private int respuestaCorrecta;
 	
 	//Constructor
-	public Pregunta(int num_preguntas, int tipo){
+	/*
+	protected abstract Pregunta(int num_preguntas, int tipo){
+		
 		int i;
 		this.textoPregunta = "";
 		this.respuestaCorrecta = 0;
@@ -29,22 +31,20 @@ public class Pregunta {
 		else for(i=0; i<num_preguntas; i++)
 					setRespuestaPosible("", i);
 		this.tipo = tipo;
-	}
+		
+	}*/
 	
 	//Fijar la pregunta
-	public void setPregunta(String p){
-		this.textoPregunta = p;
-	}
+	public abstract void setPregunta(String p);
 	
 	//devolver la pregunta
-	public String getPregunta(){
-		return textoPregunta;
-	}
+	public abstract String getPregunta();
 	
 	//fijar la respuesta correcta
-	public void setRespuestaCorrecta(int num){
-		this.respuestaCorrecta = num;
-	}
+	public abstract void setRespuesta(String res);
+	//{
+	//	this.respuestaCorrecta = num;
+	//}
 	
 	//fijar una respuesta posible
 	public void setRespuestaPosible(String text, int num){
