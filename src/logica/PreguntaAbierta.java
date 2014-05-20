@@ -1,5 +1,9 @@
 package logica;
 
+/*
+ * No se utiliza ya.
+ * La he dejado por si acaso.
+ */
 public class PreguntaAbierta extends Pregunta {
 	
 	private String textoPregunta;

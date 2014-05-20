@@ -2,17 +2,17 @@ package logica;
 
 public class PreguntaFacil extends Decorador{
 	
-	private String[] respuestas;
+	//private String[] respuestas = new String[2];
 	private int j = 0;
 	
 	public PreguntaFacil(IPregunta p){
 		super(p);
-		for(int i = 0; i < 4; i++)
-			respuestas[0]="";
+		for(int i = 0; i < 2; i++)
+			super.respuestas[i]="";
 	}
 	
 	public void setPosibleRespuesta(String res){
-		if(j < 4){
+		if(j < 2){
 			respuestas[j] = res;
 			j++;
 		}
@@ -25,5 +25,15 @@ public class PreguntaFacil extends Decorador{
 	
 	public String getTextoPregunta(){
 		return super.getTextoPregunta();
+	}
+	
+	public void setCategoria(int cat){
+		
+	}
+	
+	public boolean respuestaOK(String res){
+		if(this.respuestas[super.getRespuestaCorrecta()].equals(res))
+			return true;
+		return false;
 	}
 }

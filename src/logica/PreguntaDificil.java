@@ -2,12 +2,13 @@ package logica;
 
 public class PreguntaDificil extends Decorador{
 	
-	private String[] respuestas;
+	//private String[] respuestas = new String[4];
 	private int j = 0;
+	//private int respuestaCorrecta;
 	
 	public PreguntaDificil(IPregunta p){
 		super(p);
-		for(int i = 0; i < 2; i++)
+		for(int i = 2; i < 4; i++)
 			respuestas[0]="";
 	}
 	
@@ -16,7 +17,7 @@ public class PreguntaDificil extends Decorador{
 			respuestas[j] = res;
 			j++;
 		}
-		else System.out.print("No puede insertat mas respuestas");
+		else System.out.print("No puede insertar mas respuestas");
 	}
 	
 	public void setRespuesta(int res){
@@ -25,5 +26,11 @@ public class PreguntaDificil extends Decorador{
 	
 	public String getTextoPregunta(){
 		return super.getTextoPregunta();
+	}
+	
+	public boolean compararRespuesta(String res){
+		if(respuestas[super.getRespuestaCorrecta()].equals(res))
+			return true;
+		return false;
 	}
 }

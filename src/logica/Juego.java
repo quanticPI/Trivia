@@ -9,8 +9,8 @@ public abstract class Juego {
 	protected final static int MUSICA = 4;
 	protected int categoria;
 	
-	public abstract void setPregunta(Pregunta p, int i);
-	public abstract Pregunta getPregunta(int i);
+	public abstract void setPregunta(IPregunta p, int i);
+	public abstract IPregunta getPregunta(int i);
 	public abstract void setCategoria(int categoria);
 	public abstract int getCategoria();
 	

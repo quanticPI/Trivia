@@ -2,10 +2,10 @@ package logica;
 
 /**
  * @author Nikolay
+ * No se utiliza ya.
+ * La dejo por si acaso.
  */
-public class Pregunta {
-		
-	
+public class Pregunta {	
 	
 	//fijar una respuesta posible
 	public void setRespuestaPosible(String text, int num){

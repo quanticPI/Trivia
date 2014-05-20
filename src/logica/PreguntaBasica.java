@@ -16,6 +16,7 @@ public class PreguntaBasica implements IPregunta{
 	// array con las posibles respuestas
 	//private String[] respuestas;
 	// indice de la respuesta correcta
+	//PARA REFACTORIZAR
 	private int respuestaCorrecta;	
 	
 	
@@ -38,6 +39,10 @@ public class PreguntaBasica implements IPregunta{
 	
 	public void setRespuesta(int res){
 		this.respuestaCorrecta = res;
+	}
+	
+	public int getRespuestaCorrecta(){
+		return this.respuestaCorrecta;
 	}
 
 }

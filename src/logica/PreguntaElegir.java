@@ -1,5 +1,7 @@
 package logica;
-
+/*
+ * No se utiliza
+ */
 public class PreguntaElegir extends Pregunta{
 	
 	

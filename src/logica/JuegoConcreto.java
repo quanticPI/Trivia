@@ -8,18 +8,18 @@ public class JuegoConcreto extends Juego{
 	protected final static int CINE = 3;
 	protected final static int MUSICA = 4;
 	*/
-	private Pregunta[] preguntas;
+	private IPregunta[] preguntas;
 
 	public JuegoConcreto(int categoria){
 		super.categoria = categoria;
-		preguntas = null;
+		preguntas = new IPregunta[10];
 	}
 		
-	public void setPregunta(Pregunta p, int i){
+	public void setPregunta(IPregunta p, int i){
 		preguntas[i] = p;
 	}
 	
-	public Pregunta getPregunta(int i){
+	public IPregunta getPregunta(int i){
 		return preguntas[i];
 	}
 	
