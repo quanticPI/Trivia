@@ -11,6 +11,7 @@ public class Trivia {
 		System.out.println(preg.getTextoPregunta());;
 		game.setPregunta(preg, 0);
 		System.out.println(game.getPregunta(0).getRespuestaCorrecta());
+		
 	}
-
+	
 }

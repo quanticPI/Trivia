@@ -13,5 +13,8 @@ public abstract class Juego {
 	public abstract IPregunta getPregunta(int i);
 	public abstract void setCategoria(int categoria);
 	public abstract int getCategoria();
+	public abstract void setJugador(Jugador j);
+	public abstract Jugador getJugador(int pos);
+	public abstract void notificar(int jugador);
 	
 }

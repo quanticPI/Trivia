@@ -3,8 +3,7 @@ package logica;
  * La pregunta a decorar
  */
 public class PreguntaBasica implements IPregunta{
-	
-	protected final static int SINCATEGORIA = 0;	
+		
 	protected final static int HISTORIA = 1;
 	protected final static int DEPORTES = 2;
 	protected final static int CINE = 3;
@@ -24,7 +23,6 @@ public class PreguntaBasica implements IPregunta{
 	public PreguntaBasica(){
 		this.textoPregunta = "";
 		this.respuestaCorrecta = 0;
-		this.cat = SINCATEGORIA;
 		//for(int i=0; i<numPreguntas; i++)
 		//	respuestas[0]="";
 	}
