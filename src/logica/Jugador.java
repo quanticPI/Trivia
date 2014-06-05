@@ -43,7 +43,7 @@ public class Jugador {
 	//notoficar cambios en la puntuacion
 	public void notificarObservador(){
 		Iterator<Observer> iter = observadores.iterator();
-		observadores.iterator().next().actualizar(puntosToString());	
+		iter.next().actualizar();	
 	}
 	
 	public void registrarObs(Observer o){
@@ -65,3 +65,4 @@ public class Jugador {
 		sb.append(puntosActual);
 		return sb.toString();	
 	}
+}

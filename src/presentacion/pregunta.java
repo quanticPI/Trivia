@@ -1,31 +1,28 @@
 package presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
-public class pregunta extends JFrame {
+import logica.Jugador;
+import logica.Observer;
+
+@SuppressWarnings("serial")
+public class pregunta extends JFrame implements Observer{
 
 	public JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	//
-	public JLabel puntosrival1;
+	private JLabel puntosrival1;
+	private Jugador jugador;
 
 	/**
 	 * Launch the application.
@@ -54,73 +51,47 @@ public class pregunta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		
 		textField = new JTextField();
 		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
 		
 		JLabel puntosrival1 = new JLabel("New label");
-		
-		JLabel puntosrival2 = new JLabel("New label");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-							.addGap(18))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(22)
+							.addGap(129)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnNewRadioButton_1)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(rdbtnNewRadioButton)
-									.addGap(20)
-									.addComponent(puntosrival1)))
-							.addGap(10)))
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)
-							.addGap(6))
-						.addComponent(puntosrival2)))
+								.addComponent(rdbtnNewRadioButton)
+								.addComponent(rdbtnNewRadioButton_1))
+							.addGap(216))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(puntosrival1)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 391, GroupLayout.PREFERRED_SIZE))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-					.addGap(11))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
+					.addGap(11)
 					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(18)
-							.addComponent(rdbtnNewRadioButton)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnNewRadioButton_1))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(6)
-							.addComponent(puntosrival1)))
-					.addContainerGap(48, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(puntosrival2)
-					.addContainerGap(96, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(puntosrival1)
+					.addGap(13)
+					.addComponent(rdbtnNewRadioButton)
+					.addGap(3)
+					.addComponent(rdbtnNewRadioButton_1)
+					.addGap(28))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	public void actualizar(){
+		puntosrival1.setText(""+jugador.getPuntos());
 	}
 }
