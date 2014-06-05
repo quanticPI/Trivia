@@ -2,25 +2,20 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-
-import java.awt.Component;
-
-import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
+import logica.Controlador;
 import logica.Jugador;
 
 public class crearUsuario extends JDialog {
@@ -34,7 +29,7 @@ public class crearUsuario extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			crearUsuario dialog = new crearUsuario();
+			crearUsuario dialog = new crearUsuario(controlador)
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -45,7 +40,7 @@ public class crearUsuario extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public crearUsuario() {
+	public crearUsuario(Controlador controlador) {
 		setTitle("Crear Usuario");
 		setBounds(100, 100, 405, 137);
 		getContentPane().setLayout(new BorderLayout());
