@@ -1,5 +1,8 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Jugador {
 	
 	private String nombre;
@@ -16,7 +19,7 @@ public class Jugador {
 	private int puntosActual;
 	
 	//private presentacion.pregunta observador;
-	private Juego juego;
+	private ArrayList<Observer> observadores = new ArrayList<Observer>();
 	
 	public Jugador(String nombre){
 		this.nombre = nombre;
@@ -39,11 +42,16 @@ public class Jugador {
 	//la parte del observador
 	//notoficar cambios en la puntuacion
 	public void notificarObservador(){
-		juego.notificar();
+		Iterator<Observer> iter = observadores.iterator();
+		iter.next().actualizar();	
 	}
 	
-	public void registrarObs(Juego j){
-		juego = j;
+	public void registrarObs(Observer o){
+		observadores.add(o);
+	}
+	
+	public void detachObs(Observer o){
+		observadores.remove(o);
 	}
 	
 	public String puntosToString(){

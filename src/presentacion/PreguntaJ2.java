@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
@@ -16,12 +16,10 @@ import logica.Jugador;
 import logica.Observer;
 
 @SuppressWarnings("serial")
-public class pregunta extends JFrame implements Observer{
+public class PreguntaJ2 extends JFrame implements Observer{
 
-	public JPanel contentPane;
-	private JTextField textField;
-	//
-	private JLabel puntosJ1;
+	private JPanel contentPane;
+	private JLabel puntosJ2;
 	private Jugador jugador;
 
 	/**
@@ -31,7 +29,7 @@ public class pregunta extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pregunta frame = new pregunta();
+					PreguntaJ2 frame = new PreguntaJ2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,57 +41,65 @@ public class pregunta extends JFrame implements Observer{
 	/**
 	 * Create the frame.
 	 */
-	public pregunta() {
-		setTitle("Pregunta");
+	public PreguntaJ2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
 		
-		puntosJ1 = new JLabel("New label");
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
+		
+		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
+		
+		JTextArea textArea = new JTextArea();
+		
+		puntosJ2 = new JLabel("New label");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(129)
+							.addGap(132)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnNewRadioButton)
-								.addComponent(rdbtnNewRadioButton_1))
-							.addGap(216))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(puntosJ1)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 391, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(rdbtnNewRadioButton_3)
+									.addPreferredGap(ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+									.addComponent(puntosJ2))
+								.addComponent(rdbtnNewRadioButton_2)
+								.addComponent(rdbtnNewRadioButton_1)
+								.addComponent(rdbtnNewRadioButton)))
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(11)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(puntosJ1)
-					.addGap(13)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(rdbtnNewRadioButton_3)
+						.addComponent(puntosJ2))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnNewRadioButton)
-					.addGap(3)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnNewRadioButton_1)
-					.addGap(28))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(rdbtnNewRadioButton_2)
+					.addGap(21))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
 	
 	public void actualizar(){
 		String p = jugador.getPuntos()+"";
-		if(!p.equals(puntosJ1.getText()))
-			puntosJ1.setText(p);
+		if(!p.equals(puntosJ2.getText()))
+			puntosJ2.setText(p);
 	}
+
 }

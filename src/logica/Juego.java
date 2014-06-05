@@ -15,6 +15,5 @@ public abstract class Juego {
 	public abstract int getCategoria();
 	public abstract void setJugador(Jugador j);
 	public abstract Jugador getJugador(int pos);
-	public abstract void notificar(int jugador);
 	
 }

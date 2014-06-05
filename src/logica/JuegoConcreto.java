@@ -13,8 +13,6 @@ public class JuegoConcreto extends Juego{
 	private IPregunta[] preguntas;
 	private Jugador[] jugadores;
 	
-	private pregunta interface1;
-
 	public JuegoConcreto(int categoria){
 		super.categoria = categoria;
 		preguntas = new IPregunta[10];
@@ -44,9 +42,5 @@ public class JuegoConcreto extends Juego{
 	public int getCategoria(){
 		return super.categoria;
 	}
-	
-	//la perte de observador
-	public void notificar(int jugador){
-		interface1.puntosrival1.setText(jugadores[jugador].puntosToString());
-	}
+		
 }
