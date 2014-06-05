@@ -7,15 +7,21 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Component;
+
 import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import logica.Jugador;
 
 public class crearUsuario extends JDialog {
 
@@ -56,20 +62,22 @@ public class crearUsuario extends JDialog {
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(83, Short.MAX_VALUE)
+					.addContainerGap(78, Short.MAX_VALUE)
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(117))
+					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+					.addGap(68))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(26)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNombre))
-					.addContainerGap(209, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addContainerGap(23, Short.MAX_VALUE)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+							.addComponent(lblNombre)
+							.addGap(2))
+						.addComponent(txtNombre, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(13))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -80,6 +88,12 @@ public class crearUsuario extends JDialog {
 				JButton aceptarButton = new JButton("Aceptar");
 				aceptarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						Jugador j = new Jugador(txtNombre.getText());
+						try{
+							controlador.crearJugador(j);
+						}
+						catch(Exception e){e.printStackTrace();}
+						dispose();
 					}
 				});
 				aceptarButton.setActionCommand("OK");

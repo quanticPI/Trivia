@@ -13,6 +13,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class trivial {
 
@@ -47,8 +50,9 @@ public class trivial {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(51, 153, 204));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 260);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnCrearUsuario = new JButton("Crear Usuario");
@@ -81,25 +85,25 @@ public class trivial {
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(159, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnVerPuntuacion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnJugar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(153))
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(31)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnVerPuntuacion, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+						.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(298))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(49)
-					.addComponent(btnCrearUsuario)
-					.addGap(30)
+					.addGap(57)
 					.addComponent(btnJugar)
-					.addGap(35)
+					.addGap(28)
+					.addComponent(btnCrearUsuario)
+					.addGap(29)
 					.addComponent(btnVerPuntuacion)
-					.addContainerGap(77, Short.MAX_VALUE))
+					.addContainerGap(49, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 				
@@ -111,6 +115,8 @@ public class trivial {
 		try{
 			crearUsuario su = new crearUsuario(); 
 			su.setVisible(true);		
+			crearUsuario ventanaCrear = new crearUsuario();
+			ventanaCrear.setVisible(true);
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
@@ -133,7 +139,4 @@ public class trivial {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	
-
 }
