@@ -14,7 +14,4 @@ public interface IPreguntaDAO {
 
 	public List<PreguntaDificil> get_pregunta_dificil_por_tema(String tema) throws DAOExcepcion;
 
-
-
-
 }
