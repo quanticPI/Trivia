@@ -38,4 +38,10 @@ public class JugadorDAOImp implements IJugadorDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void modificarJugador(Jugador j) {
+		// TODO Auto-generated method stub
+		
+	}
 }

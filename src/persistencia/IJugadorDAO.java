@@ -10,4 +10,5 @@ public interface IJugadorDAO {
 	public void actualizarJugador(Jugador j) throws DAOExcepcion;
 	public List<Jugador> encontrarJugadores() throws DAOExcepcion;
 	public Jugador encontrarJugador(String nombre) throws DAOExcepcion ;
+	public void modificarJugador(Jugador j);
 }

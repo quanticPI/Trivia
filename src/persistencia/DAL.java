@@ -52,6 +52,11 @@ public class DAL {
 			// TODO Auto-generated method stub
 			return preguntaDAO.get_pregunta_dificil_por_tema(tema) ;
 		}
+
+		public void modificarJugador(Jugador j) {
+			// TODO Auto-generated method stub
+			jugadorDAO.modificarJugador(j);
+		}
 		
 
 		}

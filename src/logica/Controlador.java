@@ -59,4 +59,8 @@ public class Controlador {
 	public List<PreguntaDificil> get_pregunta_dificil_por_tema(String tema) throws LogicaExcepcion, DAOExcepcion {
 		return dal.get_pregunta_dificil_por_tema(tema);
 	}
+	
+	public void modificarJugador(Jugador j){
+	dal.modificarJugador(j);
+	}
 }
