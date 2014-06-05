@@ -16,9 +16,9 @@ CREATE TABLE usuario (
 CREATE TABLE Pregunta (
        ID INT NOT NULL IDENTITY PRIMARY KEY
      , Texto_Pregunta CHAR(500)
+     , Respuesta_correcta CHAR(500)
      , Respuesta_Falsa1 CHAR(500)
      , Respuesta_Falsa2 CHAR(500)
      , Respuesta_Falsa3 CHAR(500)
-     , Respuesta_Falsa4 CHAR(500)
-     , Respuesta_Falsa5 CHAR(500)
+
 );
