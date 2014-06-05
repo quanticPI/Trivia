@@ -34,6 +34,70 @@ public class Jugador {
 		return this.total;
 	}
 	
+	public int getAcertadasH() {
+		return acertadasH;
+	}
+
+	public void setAcertadasH(int acertadasH) {
+		this.acertadasH = acertadasH;
+	}
+
+	public int getAcertadasD() {
+		return acertadasD;
+	}
+
+	public void setAcertadasD(int acertadasD) {
+		this.acertadasD = acertadasD;
+	}
+
+	public int getAcertadasC() {
+		return acertadasC;
+	}
+
+	public void setAcertadasC(int acertadasC) {
+		this.acertadasC = acertadasC;
+	}
+
+	public int getAcertadasM() {
+		return acertadasM;
+	}
+
+	public void setAcertadasM(int acertadasM) {
+		this.acertadasM = acertadasM;
+	}
+
+	public int getFalladasH() {
+		return falladasH;
+	}
+
+	public void setFalladasH(int falladasH) {
+		this.falladasH = falladasH;
+	}
+
+	public int getFalladasD() {
+		return falladasD;
+	}
+
+	public void setFalladasD(int falladasD) {
+		this.falladasD = falladasD;
+	}
+
+	public int getFalladasC() {
+		return falladasC;
+	}
+
+	public void setFalladasC(int falladasC) {
+		this.falladasC = falladasC;
+	}
+
+	public int getFalladasM() {
+		return falladasM;
+	}
+
+	public void setFalladasM(int falladasM) {
+		this.falladasM = falladasM;
+	}
+
 	public void addPunto(){
 		puntosActual += 1;
 		notificarObservador();

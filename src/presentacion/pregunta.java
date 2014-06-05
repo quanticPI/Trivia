@@ -1,28 +1,21 @@
 package presentacion;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-import logica.Jugador;
-import logica.Observer;
+public class pregunta extends JFrame {
 
-@SuppressWarnings("serial")
-public class pregunta extends JFrame implements Observer{
-
-	public JPanel contentPane;
-	private JTextField textField;
-	//
-	private JLabel puntosJ1;
-	private Jugador jugador;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -50,50 +43,16 @@ public class pregunta extends JFrame implements Observer{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-		
-		puntosJ1 = new JLabel("New label");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(129)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(rdbtnNewRadioButton)
-								.addComponent(rdbtnNewRadioButton_1))
-							.addGap(216))
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(puntosJ1)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 391, GroupLayout.PREFERRED_SIZE))))
+				.addGap(0, 440, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(11)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(puntosJ1)
-					.addGap(13)
-					.addComponent(rdbtnNewRadioButton)
-					.addGap(3)
-					.addComponent(rdbtnNewRadioButton_1)
-					.addGap(28))
+				.addGap(0, 268, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-	
-	public void actualizar(){
-		String p = jugador.getPuntos()+"";
-		if(!p.equals(puntosJ1.getText()))
-			puntosJ1.setText(p);
-	}
+
 }

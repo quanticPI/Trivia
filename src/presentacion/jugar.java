@@ -18,12 +18,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Choice;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 
 public class jugar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel buttonPane;
-	private JLabel lblUsuario;
+	private JLabel lblUsuario2;
 
 	/**
 	 * Launch the application.
@@ -46,7 +47,7 @@ public class jugar extends JDialog {
 		setBounds(100, 100, 450, 300);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		{
-			lblUsuario = new JLabel("Usuario:");
+			lblUsuario2 = new JLabel("Usuario 2:");
 		}
 		{
 			buttonPane = new JPanel();
@@ -81,8 +82,8 @@ public class jugar extends JDialog {
 					.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		
-		JComboBox comboBoxUsuario = new JComboBox();
-		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
+		JComboBox comboBoxUsuario2 = new JComboBox();
+		comboBoxUsuario2.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		
@@ -92,35 +93,70 @@ public class jugar extends JDialog {
 		JComboBox comboBoxDificultad = new JComboBox();
 		comboBoxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Dificultad"}));
 		
+		JLabel lblUsuario1 = new JLabel("Usuario 1:");
+		
+		JComboBox comboBoxUsuario = new JComboBox();
+		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
+		comboBoxUsuario.setToolTipText("");
+		
+		JLabel lblNDeUsuarios = new JLabel("N\u00BA de Usuarios:");
+		
+		JRadioButton radioButton1 = new JRadioButton("1");
+		
+		JRadioButton radioButton2 = new JRadioButton("2");
+		
 		
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(81)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCategoria)
-								.addComponent(lblUsuario))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(comboBoxUsuario, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(lblDificultad)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(92, Short.MAX_VALUE))
+							.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addComponent(lblCategoria)
+									.addPreferredGap(ComponentPlacement.UNRELATED))
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addComponent(lblUsuario2)
+									.addGap(12)))
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(comboBoxUsuario2, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxCategoria, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNDeUsuarios)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(radioButton1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(radioButton2))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblUsuario1, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(68, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(44)
+					.addContainerGap(8, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario)
+						.addComponent(lblNDeUsuarios)
+						.addComponent(radioButton1)
+						.addComponent(radioButton2))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblUsuario1)
 						.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
+					.addGap(13)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblUsuario2)
+						.addComponent(comboBoxUsuario2, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCategoria)
 						.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -128,7 +164,7 @@ public class jugar extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDificultad)
 						.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(80, Short.MAX_VALUE))
+					.addGap(39))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		getContentPane().setLayout(groupLayout);
