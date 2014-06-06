@@ -15,9 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import logica.Controlador;
-import logica.Jugador;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages;
 
+import logica.Controlador;
+
+@SuppressWarnings("serial")
 public class crearUsuario extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -27,20 +29,20 @@ public class crearUsuario extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
-			crearUsuario dialog = new crearUsuario(controlador);
+			crearUsuario dialog = new crearUsuario();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public crearUsuario(Controlador controlador) {
+	public crearUsuario(final Controlador controlador) {
 		setTitle("Crear Usuario");
 		setBounds(100, 100, 405, 137);
 		getContentPane().setLayout(new BorderLayout());
@@ -83,9 +85,11 @@ public class crearUsuario extends JDialog {
 				JButton aceptarButton = new JButton("Aceptar");
 				aceptarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Jugador j = new Jugador(txtNombre.getText());
+						//Jugador j = new Jugador(txtNombre.getText());
 						try{
-							controlador.crearJugador(j);
+							if(!txtNombre.getText().isEmpty())
+								controlador.crearJugador(txtNombre.getText());
+							else System.out.println("No ha introducido un nombre");	//para mejorar
 						}
 						catch(Exception e){e.printStackTrace();}
 						dispose();

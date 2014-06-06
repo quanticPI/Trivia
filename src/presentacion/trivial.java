@@ -1,26 +1,23 @@
 package presentacion;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+import logica.Controlador;
 
 public class trivial {
 
 	private JFrame frame;
 	private JButton btnCrearUsuario, btnJugar, btnVerPuntuacion;
+	private Controlador controlador;
 
 	/**
 	 * Launch the application.
@@ -85,14 +82,14 @@ public class trivial {
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(31)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(btnVerPuntuacion, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-						.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(298))
+						.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+					.addGap(308))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -113,10 +110,8 @@ public class trivial {
 
 	public void crearUsuarioActionPerformed(ActionEvent evt){
 		try{
-			crearUsuario su = new crearUsuario(); 
-			su.setVisible(true);		
-			crearUsuario ventanaCrear = new crearUsuario();
-			ventanaCrear.setVisible(true);
+			crearUsuario su = new crearUsuario(controlador); 
+			su.setVisible(true);
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}

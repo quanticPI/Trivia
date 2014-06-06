@@ -1,30 +1,33 @@
 package presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JList;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Choice;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
+import logica.Jugador;
+
+@SuppressWarnings("serial")
 public class jugar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel buttonPane;
 	private JLabel lblUsuario2;
+	private JRadioButton radioButton1;
+	private JRadioButton radioButton2;
+	private JComboBox<Jugador> comboBoxUsuario;
+	private JComboBox<Jugador> comboBoxUsuario2;
 
 	/**
 	 * Launch the application.
@@ -44,7 +47,7 @@ public class jugar extends JDialog {
 	 */
 	public jugar() {
 		setTitle("Jugar");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 478, 327);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		{
 			lblUsuario2 = new JLabel("Usuario 2:");
@@ -69,20 +72,9 @@ public class jugar extends JDialog {
 				buttonPane.add(cancelarButton);
 			}
 		}
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-				.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-					.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
 		
-		JComboBox comboBoxUsuario2 = new JComboBox();
+		comboBoxUsuario2 = new JComboBox();
+		comboBoxUsuario2.setEnabled(false);
 		comboBoxUsuario2.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
@@ -95,15 +87,33 @@ public class jugar extends JDialog {
 		
 		JLabel lblUsuario1 = new JLabel("Usuario 1:");
 		
-		JComboBox comboBoxUsuario = new JComboBox();
+		comboBoxUsuario = new JComboBox<Jugador>();
 		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		comboBoxUsuario.setToolTipText("");
 		
 		JLabel lblNDeUsuarios = new JLabel("N\u00BA de Usuarios:");
 		
-		JRadioButton radioButton1 = new JRadioButton("1");
+		radioButton1 = new JRadioButton("1");
+		radioButton1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				radioButton1.setSelected(true);
+				if(radioButton2.isSelected())
+					radioButton2.setSelected(false);
+				if(comboBoxUsuario2.isEnabled())
+					comboBoxUsuario2.setEnabled(false);
+			}
+		});
+		radioButton1.setSelected(true);
 		
-		JRadioButton radioButton2 = new JRadioButton("2");
+		radioButton2 = new JRadioButton("2");
+		radioButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				radioButton2.setSelected(true);
+				comboBoxUsuario2.setEnabled(true);
+				if(radioButton1.isSelected())
+					radioButton1.setSelected(false);
+			}
+		});
 		
 		
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
@@ -112,61 +122,75 @@ public class jugar extends JDialog {
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addGap(81)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(lblDificultad)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addComponent(lblCategoria)
-									.addPreferredGap(ComponentPlacement.UNRELATED))
-								.addGroup(gl_contentPanel.createSequentialGroup()
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 									.addComponent(lblUsuario2)
-									.addGap(12)))
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(comboBoxUsuario2, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(comboBoxCategoria, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addComponent(lblCategoria))
+								.addGap(31))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(lblUsuario1, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)))
+						.addComponent(lblDificultad)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNDeUsuarios)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNDeUsuarios)))
+					.addGap(25)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addComponent(radioButton1)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(11)
 							.addComponent(radioButton2))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addComponent(lblUsuario1, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(68, Short.MAX_VALUE))
+						.addComponent(comboBoxCategoria, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(comboBoxUsuario2, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(comboBoxDificultad, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(87, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(8, Short.MAX_VALUE)
+					.addGap(29)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNDeUsuarios)
-						.addComponent(radioButton1)
-						.addComponent(radioButton2))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(radioButton2)
+						.addComponent(radioButton1))
+					.addPreferredGap(ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario1)
-						.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxUsuario, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblUsuario1))
 					.addGap(13)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario2)
-						.addComponent(comboBoxUsuario2, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxUsuario2, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblUsuario2))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCategoria)
-						.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxCategoria, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCategoria))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDificultad)
-						.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxDificultad, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDificultad))
 					.addGap(39))
 		);
 		contentPanel.setLayout(gl_contentPanel);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(276, Short.MAX_VALUE)
+					.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+					.addGap(12))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+					.addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11))
+		);
 		getContentPane().setLayout(groupLayout);
 	}
 }
