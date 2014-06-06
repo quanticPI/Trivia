@@ -29,7 +29,7 @@ public class crearUsuario extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			crearUsuario dialog = new crearUsuario(controlador)
+			crearUsuario dialog = new crearUsuario(controlador);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
