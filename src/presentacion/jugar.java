@@ -16,6 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import logica.Controlador;
 import logica.Jugador;
 
 @SuppressWarnings("serial")
@@ -57,6 +58,11 @@ public class jugar extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			{
 				JButton empezarButton = new JButton("Empezar");
+				empezarButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				empezarButton.setActionCommand("");
 				buttonPane.add(empezarButton);
 				getRootPane().setDefaultButton(empezarButton);
@@ -80,10 +86,11 @@ public class jugar extends JDialog {
 		JLabel lblCategoria = new JLabel("Categoria:");
 		
 		JComboBox comboBoxCategoria = new JComboBox();
-		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Categoria"}));
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Categoria", "Historia", "Cine", "Musica", "Deportes"}));
 		JLabel lblDificultad = new JLabel("Dificultad:");
 		JComboBox comboBoxDificultad = new JComboBox();
-		comboBoxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Dificultad"}));
+		comboBoxDificultad.setToolTipText("");
+		comboBoxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Dificultad", "F\u00E1cil", "Dif\u00EDcil"}));
 		
 		JLabel lblUsuario1 = new JLabel("Usuario 1:");
 		
@@ -192,5 +199,14 @@ public class jugar extends JDialog {
 					.addGap(11))
 		);
 		getContentPane().setLayout(groupLayout);
+	}
+	
+	private void buscarJugadores(final Controlador controlador){
+		java.util.List<Jugador> jugadores = null;		
+		try{
+			jugadores = controlador.encontrarJugadores();
+		}
+		catch(Exception e){e.printStackTrace();}		
+		comboBoxUsuario.addItem(jugadores.iterator().next()); // refactor with Jugador item = jugadores.iterator().next(); ... .addItem(item);
 	}
 }
