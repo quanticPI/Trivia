@@ -4,7 +4,7 @@ public interface IPregunta {
 	
 	public void setTextoPregunta(String p);
 	public String getTextoPregunta();
-	public void setRespuesta(int res);
-	public int getRespuestaCorrecta();
+	public void setRespuesta(String res);
+	public String getRespuestaCorrecta();
 	
 }

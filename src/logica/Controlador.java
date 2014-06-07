@@ -1,6 +1,5 @@
 package logica;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import persistencia.DAL;
@@ -46,7 +45,6 @@ public class Controlador {
 	}
 	
 	public Jugador encontrarJugador(String nombre) throws LogicaExcepcion{
-		Jugador j;
 		try{
 			return dal.encontrarJugador(nombre); 				
 		}
@@ -69,7 +67,7 @@ public class Controlador {
 		return dal.get_pregunta_dificil_por_tema(tema);
 	}
 	
-	public void modificarJugador(Jugador j){
-	dal.modificarJugador(j);
+	public void actualizarJugador(Jugador j) throws LogicaExcepcion, DAOExcepcion{
+		dal.actualizarJugador(j);
 	}
 }

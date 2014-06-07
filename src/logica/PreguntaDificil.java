@@ -20,7 +20,7 @@ public class PreguntaDificil extends Decorador{
 		else System.out.print("No puede insertar mas respuestas");
 	}
 	
-	public void setRespuesta(int res){
+	public void setRespuesta(String res){
 		super.setRespuesta(res);
 	}
 	
@@ -29,7 +29,7 @@ public class PreguntaDificil extends Decorador{
 	}
 	
 	public boolean compararRespuesta(String res){
-		if(respuestas[super.getRespuestaCorrecta()].equals(res))
+		if(super.getRespuestaCorrecta().equals(res))
 			return true;
 		return false;
 	}

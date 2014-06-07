@@ -11,13 +11,13 @@ public class PreguntaBasica implements IPregunta{
 	//private String[] respuestas;
 	// indice de la respuesta correcta
 	//PARA REFACTORIZAR
-	private int respuestaCorrecta;	
+	private String respuestaCorrecta;	
 	
 	
 	//Constructor
 	public PreguntaBasica(){
 		this.textoPregunta = "";
-		this.respuestaCorrecta = 0;
+		this.respuestaCorrecta = "";
 		//for(int i=0; i<numPreguntas; i++)
 		//	respuestas[0]="";
 	}
@@ -39,11 +39,11 @@ public class PreguntaBasica implements IPregunta{
 		return this.textoPregunta;
 	}
 	
-	public void setRespuesta(int res){
+	public void setRespuesta(String res){
 		this.respuestaCorrecta = res;
 	}
 	
-	public int getRespuestaCorrecta(){
+	public String getRespuestaCorrecta(){
 		return this.respuestaCorrecta;
 	}
 

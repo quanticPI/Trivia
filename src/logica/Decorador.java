@@ -21,11 +21,11 @@ public abstract class Decorador implements IPregunta{
 	}
 	
 	//fijar una respuesta.
-	public void setRespuesta(int res){
+	public void setRespuesta(String res){
 		pregunta.setRespuesta(res);
 	}
 	
-	public int getRespuestaCorrecta(){
+	public String getRespuestaCorrecta(){
 		return pregunta.getRespuestaCorrecta();
 	}
 }
