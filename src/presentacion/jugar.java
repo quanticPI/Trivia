@@ -17,6 +17,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import logica.Controlador;
+import logica.FabricaConcreta;
+import logica.FabricaJuego;
+import logica.Juego;
 import logica.Jugador;
 
 @SuppressWarnings("serial")
@@ -29,11 +32,15 @@ public class jugar extends JDialog {
 	private JRadioButton radioButton2;
 	private JComboBox<Jugador> comboBoxUsuario;
 	private JComboBox<Jugador> comboBoxUsuario2;
-
+	private JComboBox comboBoxCategoria;
+	
+	private FabricaJuego fabricaJuego;
+	private Juego juego;
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			jugar dialog = new jugar();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -41,12 +48,13 @@ public class jugar extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public jugar() {
+	public jugar(final Controlador controlador) {
+		setResizable(false);
 		setTitle("Jugar");
 		setBounds(100, 100, 478, 327);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,7 +68,18 @@ public class jugar extends JDialog {
 				JButton empezarButton = new JButton("Empezar");
 				empezarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						fabricaJuego = new FabricaConcreta();
+						juego = fabricaJuego.metodoFabrica(comboBoxCategoria.getSelectedItem().toString());
 						
+						pregunta pregWindow1 = new pregunta(controlador);
+						pregunta pregWindow2 = new pregunta(controlador);
+						pregWindow1.setVisible(true);
+						pregWindow1.setTitle("Jugaodor 1");
+					//	pregWindow1.setLocationRelativeTo(pregWindow2);
+						pregWindow2.setVisible(true);
+						pregWindow2.setTitle("Jugador 2");
+						pregWindow2.setLocation(pregWindow1.getX()+pregWindow1.getWidth(), pregWindow1.getY());
+						dispose();
 					}
 				});
 				empezarButton.setActionCommand("");
@@ -85,7 +104,7 @@ public class jugar extends JDialog {
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		
-		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria = new JComboBox();
 		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Categoria", "Historia", "Cine", "Musica", "Deportes"}));
 		JLabel lblDificultad = new JLabel("Dificultad:");
 		JComboBox comboBoxDificultad = new JComboBox();

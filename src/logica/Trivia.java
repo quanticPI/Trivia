@@ -4,7 +4,7 @@ public class Trivia {
 
 	public static void main(String[] args) {
 		FabricaJuego fabrica = new FabricaConcreta();
-		Juego game = fabrica.metodoFabrica(Juego.HISTORIA);
+		Juego game = fabrica.metodoFabrica("historia");
 		
 		IPregunta preg = new PreguntaDificil(new PreguntaFacil(new PreguntaBasica()));
 		preg.setTextoPregunta("asda");

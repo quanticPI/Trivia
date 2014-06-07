@@ -1,7 +1,5 @@
 package logica;
 
-import presentacion.pregunta;
-import presentacion.trivial;
 
 public class JuegoConcreto extends Juego{
 	/*
@@ -13,7 +11,7 @@ public class JuegoConcreto extends Juego{
 	private IPregunta[] preguntas;
 	private Jugador[] jugadores;
 	
-	public JuegoConcreto(int categoria){
+	public JuegoConcreto(String categoria){
 		super.categoria = categoria;
 		preguntas = new IPregunta[10];
 		jugadores = new Jugador[2]; 	
@@ -35,11 +33,11 @@ public class JuegoConcreto extends Juego{
 		this.jugadores[jugadores.length] = j; //poner if si no hay espacio
 	}
 	
-	public void setCategoria(int categoria){
+	public void setCategoria(String categoria){
 		super.categoria = categoria;
 	}
 	
-	public int getCategoria(){
+	public String getCategoria(){
 		return super.categoria;
 	}
 		

@@ -10,12 +10,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages;
 
 import logica.Controlador;
 
@@ -89,7 +88,10 @@ public class crearUsuario extends JDialog {
 						try{
 							if(!txtNombre.getText().isEmpty())
 								controlador.crearJugador(txtNombre.getText());
-							else System.out.println("No ha introducido un nombre");	//para mejorar
+							
+							else{
+								JOptionPane.showMessageDialog(rootPane, "No ha introducido un nombre", "Error", EXIT_ON_CLOSE);
+							}
 						}
 						catch(Exception e){e.printStackTrace();}
 						dispose();
