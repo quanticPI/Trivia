@@ -1,7 +1,6 @@
 package persistencia;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import excepciones.DAOExcepcion;
@@ -53,9 +52,9 @@ public class DAL {
 			return preguntaDAO.get_pregunta_dificil_por_tema(tema) ;
 		}
 
-		public void modificarJugador(Jugador j) {
+		public void actualizarJugador(Jugador j) throws DAOExcepcion {
 			// TODO Auto-generated method stub
-			jugadorDAO.modificarJugador(j);
+			jugadorDAO.actualizarJugador(j);
 		}
 		
 

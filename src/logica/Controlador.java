@@ -45,6 +45,15 @@ public class Controlador {
 
 	}
 	
+	public Jugador encontrarJugador(String nombre) throws LogicaExcepcion{
+		Jugador j;
+		try{
+			return dal.encontrarJugador(nombre); 				
+		}
+		catch(DAOExcepcion e){
+			throw new LogicaExcepcion(e);
+		}
+	}
 
 	public List<Jugador> encontrarJugadores() throws LogicaExcepcion {
 		try {

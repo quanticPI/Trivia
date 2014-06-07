@@ -17,9 +17,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import logica.Controlador;
-import logica.FabricaConcreta;
-import logica.FabricaJuego;
-import logica.Juego;
 import logica.Jugador;
 
 @SuppressWarnings("serial")
@@ -33,9 +30,8 @@ public class jugar extends JDialog {
 	private JComboBox<Jugador> comboBoxUsuario;
 	private JComboBox<Jugador> comboBoxUsuario2;
 	private JComboBox comboBoxCategoria;
+	private JComboBox comboBoxDificultad;
 	
-	private FabricaJuego fabricaJuego;
-	private Juego juego;
 	
 	/**
 	 * Launch the application.
@@ -68,8 +64,7 @@ public class jugar extends JDialog {
 				JButton empezarButton = new JButton("Empezar");
 				empezarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						fabricaJuego = new FabricaConcreta();
-						juego = fabricaJuego.metodoFabrica(comboBoxCategoria.getSelectedItem().toString());
+						
 						
 						pregunta pregWindow1 = new pregunta(controlador);
 						pregunta pregWindow2 = new pregunta(controlador);
@@ -107,7 +102,7 @@ public class jugar extends JDialog {
 		comboBoxCategoria = new JComboBox();
 		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Categoria", "Historia", "Cine", "Musica", "Deportes"}));
 		JLabel lblDificultad = new JLabel("Dificultad:");
-		JComboBox comboBoxDificultad = new JComboBox();
+		comboBoxDificultad = new JComboBox();
 		comboBoxDificultad.setToolTipText("");
 		comboBoxDificultad.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Dificultad", "F\u00E1cil", "Dif\u00EDcil"}));
 		
@@ -130,7 +125,6 @@ public class jugar extends JDialog {
 			}
 		});
 		radioButton1.setSelected(true);
-		
 		radioButton2 = new JRadioButton("2");
 		radioButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -227,5 +221,17 @@ public class jugar extends JDialog {
 		}
 		catch(Exception e){e.printStackTrace();}		
 		comboBoxUsuario.addItem(jugadores.iterator().next()); // refactor with Jugador item = jugadores.iterator().next(); ... .addItem(item);
+	}
+	
+	public String get_categoria(){
+		return comboBoxCategoria.getSelectedItem().toString();		
+	}
+	
+	public String get_dificultad(){
+		return comboBoxDificultad.getSelectedItem().toString();
+	}
+	
+	public String get_jugador(){
+		return comboBoxUsuario.getSelectedItem().toString();
 	}
 }

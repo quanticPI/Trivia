@@ -4,12 +4,7 @@ package logica;
  */
 public class PreguntaBasica implements IPregunta{
 		
-	protected final static int HISTORIA = 1;
-	protected final static int DEPORTES = 2;
-	protected final static int CINE = 3;
-	protected final static int MUSICA = 4;
-	protected int cat;
-	protected String tipo;
+	protected String cat;
 	//el texto de la pregunta
 	private String textoPregunta;
 	// array con las posibles respuestas
@@ -26,6 +21,15 @@ public class PreguntaBasica implements IPregunta{
 		//for(int i=0; i<numPreguntas; i++)
 		//	respuestas[0]="";
 	}
+	
+	public String getCat() {
+		return this.cat;
+	}
+
+	public void setCat(String cat) {
+		this.cat = cat;
+	}
+
 	
 	public void setTextoPregunta(String p){
 		this.textoPregunta = p;

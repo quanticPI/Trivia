@@ -12,13 +12,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import logica.Controlador;
+import logica.FabricaConcreta;
+import logica.FabricaJuego;
+import logica.Juego;
 
 public class Trivia {
 
 	private JFrame frame;
 	private JButton btnCrearUsuario, btnJugar, btnVerPuntuacion;
 	private Controlador controlador;
-
+	
+	private FabricaJuego fabricaJuego;
+	private Juego juego;
+	private jugar jugarDialog;
 	/**
 	 * Launch the application.
 	 */
@@ -133,5 +139,16 @@ public class Trivia {
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public void empezarJuego(){
+		fabricaJuego = new FabricaConcreta();
+		juego = fabricaJuego.metodoFabrica(jugarDialog.get_categoria());
+		try {
+			juego.setJugador(controlador.encontrarJugador(jugarDialog.get_jugador()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
