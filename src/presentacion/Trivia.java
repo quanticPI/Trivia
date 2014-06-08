@@ -22,9 +22,7 @@ public class Trivia {
 	private JButton btnCrearUsuario, btnJugar, btnVerPuntuacion;
 	private Controlador controlador;
 	
-	private FabricaJuego fabricaJuego;
-	private Juego juego;
-	private jugar jugarDialog;
+
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +57,7 @@ public class Trivia {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnCrearUsuario = new JButton("Crear Usuario");
-		
+		controlador = Controlador.getInstance();
 		
 		btnCrearUsuario.addActionListener(new ActionListener(){ 
 			public void actionPerformed(ActionEvent evt){
@@ -126,7 +124,7 @@ public class Trivia {
 	public void jugarActionPerformed(ActionEvent evt){
 		try{
 			jugar ju = new jugar(controlador); 
-			ju.setVisible(true);		
+			ju.setVisible(true);	
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
@@ -134,21 +132,13 @@ public class Trivia {
 	
 	public void verPuntuacionActionPerformed(ActionEvent evt){
 		try{
-			puntuacion pu = new puntuacion(); 
+			puntuacion pu = new puntuacion(controlador); 
+			pu.cargaPuntuacion();
 			pu.setVisible(true);		
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
-	public void empezarJuego(){
-		fabricaJuego = new FabricaConcreta();
-		juego = fabricaJuego.metodoFabrica(jugarDialog.get_categoria());
-		try {
-			juego.setJugador(controlador.encontrarJugador(jugarDialog.get_jugador()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+
 }

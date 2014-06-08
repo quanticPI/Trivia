@@ -2,18 +2,38 @@ package logica;
 
 public abstract class Juego {
 	
-	//protected final static int SINCATEGORIA = 0;	
-	//protected final static int HISTORIA = 1;
-	//protected final static int DEPORTES = 2;
-	//protected final static int CINE = 3;
-	//protected final static int MUSICA = 4;
+
 	private String categoria;
+	private IPregunta[] preguntas;
+	private Jugador[] jugadores;
 	
-	public abstract void setPregunta(IPregunta p, int i);
-	public abstract IPregunta getPregunta(int i);
 	//public abstract void setCategoria(String categoria);
-	public abstract String getCategoria();
-	public abstract void setJugador(Jugador j);
-	public abstract Jugador getJugador(int pos);
+	public  String getCategoria(){
+		return this.categoria;
+	};
+	public  void setCategoria(String cat){
+		 this.categoria = cat;
+	};
+	//TO DO
+	public void setPreguntas(IPregunta[] p ){
+		this.preguntas = p;
+	}
+	
+	public IPregunta[] getPreguntas(){
+		return this.preguntas;
+	}
+	//TO DO
+	public IPregunta getPregunta(int i){
+		return preguntas[i];
+	}
+	
+	public Jugador getJugador(int pos){
+		return this.jugadores[pos];
+	}
+	
+	public void setJugadores(Jugador[] j){
+		this.jugadores  = j; //poner if si no hay espacio
+	}
+	
 	
 }

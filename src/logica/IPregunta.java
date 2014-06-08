@@ -1,10 +1,13 @@
 package logica;
 
+
 public interface IPregunta {
 	
-	public void setTextoPregunta(String p);
+	public void setTextoPregunta(String pregunta);
 	public String getTextoPregunta();
-	public void setRespuesta(String res);
 	public String getRespuestaCorrecta();
-	
+	public boolean compararRespuesta(String resp);
+	public abstract void setRespuestas(String[] respuestas);	
+	public abstract String[] getRespuestas();
+	public String getRespuesta(int i);
 }

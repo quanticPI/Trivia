@@ -14,13 +14,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 
-import excepciones.*;
-import logica.*;
+import logica.Controlador;
+import logica.Jugador;
+import excepciones.DAOExcepcion;
+import excepciones.LogicaExcepcion;
 
 public class puntuacion extends JDialog {
 
@@ -28,21 +30,10 @@ public class puntuacion extends JDialog {
 	private Controlador control;
 	private JTable tablePuntuacion;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			puntuacion dialog = new puntuacion();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	
-	public puntuacion() throws LogicaExcepcion, DAOExcepcion{
+	public puntuacion(Controlador controlador) throws LogicaExcepcion, DAOExcepcion{
+		this.control = controlador;
 		setBounds(130, 130, 760, 348);	
 		setTitle("Consultar Puntuacion");
 		control = Controlador.getInstance();
@@ -77,7 +68,7 @@ public class puntuacion extends JDialog {
 	class PuntuacionTableModel extends AbstractTableModel {
 		
 		private static final long serialVersionUID = 1L;
-		private String[] columnNames = { "Usuario", "Puntuaci—n"};
+		private String[] columnNames = { "Usuario", "Puntuacion"};
 		private ArrayList<Jugador> data = new ArrayList<Jugador>();
 		
 		public int getColumnCount(){ 
@@ -119,8 +110,6 @@ public class puntuacion extends JDialog {
 			this.fireTableDataChanged();
 		} 
 	}
-	
-	
 	
 	
 }

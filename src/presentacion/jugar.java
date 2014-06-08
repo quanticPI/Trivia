@@ -3,6 +3,9 @@ package presentacion;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -16,8 +19,17 @@ import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import excepciones.DAOExcepcion;
+import excepciones.LogicaExcepcion;
 import logica.Controlador;
+import logica.FabricaConcreta;
+import logica.FabricaJuego;
+import logica.IPregunta;
+import logica.Juego;
 import logica.Jugador;
+import logica.PreguntaBasica;
+import logica.PreguntaDificil;
+import logica.PreguntaFacil;
 
 @SuppressWarnings("serial")
 public class jugar extends JDialog {
@@ -27,11 +39,13 @@ public class jugar extends JDialog {
 	private JLabel lblUsuario2;
 	private JRadioButton radioButton1;
 	private JRadioButton radioButton2;
-	private JComboBox<Jugador> comboBoxUsuario;
-	private JComboBox<Jugador> comboBoxUsuario2;
+	private JComboBox<String> comboBoxUsuario;
+	private JComboBox<String> comboBoxUsuario2;
 	private JComboBox comboBoxCategoria;
 	private JComboBox comboBoxDificultad;
-	
+	private FabricaJuego fabricaJuego;
+	private Juego juego;
+
 	
 	/**
 	 * Launch the application.
@@ -48,8 +62,10 @@ public class jugar extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @throws LogicaExcepcion 
 	 */
-	public jugar(final Controlador controlador) {
+	public jugar(final Controlador controlador) throws LogicaExcepcion {
+
 		setResizable(false);
 		setTitle("Jugar");
 		setBounds(100, 100, 478, 327);
@@ -64,17 +80,17 @@ public class jugar extends JDialog {
 				JButton empezarButton = new JButton("Empezar");
 				empezarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						try {
+							empezarJuego(controlador);
+						} catch (LogicaExcepcion e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (DAOExcepcion e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						
-						
-						pregunta pregWindow1 = new pregunta(controlador);
-						pregunta pregWindow2 = new pregunta(controlador);
-						pregWindow1.setVisible(true);
-						pregWindow1.setTitle("Jugaodor 1");
-					//	pregWindow1.setLocationRelativeTo(pregWindow2);
-						pregWindow2.setVisible(true);
-						pregWindow2.setTitle("Jugador 2");
-						pregWindow2.setLocation(pregWindow1.getX()+pregWindow1.getWidth(), pregWindow1.getY());
-						dispose();
+
 					}
 				});
 				empezarButton.setActionCommand("");
@@ -96,6 +112,7 @@ public class jugar extends JDialog {
 		comboBoxUsuario2 = new JComboBox();
 		comboBoxUsuario2.setEnabled(false);
 		comboBoxUsuario2.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
+
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		
@@ -108,9 +125,17 @@ public class jugar extends JDialog {
 		
 		JLabel lblUsuario1 = new JLabel("Usuario 1:");
 		
-		comboBoxUsuario = new JComboBox<Jugador>();
+		comboBoxUsuario = new JComboBox<String>();
 		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		comboBoxUsuario.setToolTipText("");
+		ArrayList<Jugador> jugadores = controlador.encontrarJugadores();
+		Iterator<Jugador> iterador = jugadores.iterator();
+		while(iterador.hasNext()){
+			String nombre = iterador.next().getNombre();
+		this.comboBoxUsuario2.addItem(nombre);
+		this.comboBoxUsuario.addItem(nombre);
+
+		}
 		
 		JLabel lblNDeUsuarios = new JLabel("N\u00BA de Usuarios:");
 		
@@ -214,24 +239,66 @@ public class jugar extends JDialog {
 		getContentPane().setLayout(groupLayout);
 	}
 	
+	public void empezarJuego(final Controlador controlador) throws LogicaExcepcion, DAOExcepcion{
+		fabricaJuego = new FabricaConcreta();
+		juego = fabricaJuego.metodoFabrica(comboBoxCategoria.getSelectedItem().toString());
+		Jugador[] j = new Jugador[2];
+		j[0] = controlador.encontrarJugador( comboBoxUsuario.getSelectedItem().toString());
+		if (this.radioButton2.isSelected()){
+			j[1] = controlador.encontrarJugador( comboBoxUsuario2.getSelectedItem().toString());
+		}
+		juego.setJugadores(j);
+		ArrayList<PreguntaBasica> pB = controlador.get_preguntas_por_tema(juego.getCategoria());
+		PreguntaBasica[] preguntas = pB.toArray(new PreguntaBasica[10]);
+		IPregunta[] preguntaDecorada = new IPregunta[10];
+		String dif = this.get_dificultad();
+	 if (dif.equals("Fácil")) {
+		for (int i =0; i < preguntas.length; i++){
+			String[] res =  controlador.get_respuestas(preguntas[i]);
+			IPregunta p = new PreguntaFacil(preguntas[i], res);
+			preguntaDecorada[i] = p ;
+		}
+		
+		} else if (dif.equals("Difícil")){
+			for (int i =0; i < preguntas.length; i++){
+				IPregunta p = new PreguntaDificil(preguntas[i], controlador.get_respuestas(preguntas[i]));
+				preguntaDecorada[i] = p ;
+			} }
+	 	juego.setPreguntas(preguntaDecorada);
+	 
+	 
+		try {
+			pregunta pregWindow1 = new pregunta(controlador, juego, dif);
+			pregWindow1.setVisible(true);
+			pregWindow1.setTitle("Jugador 1");
+			
+			if (this.radioButton2.isSelected()){
+			pregunta pregWindow2 = new pregunta(controlador, juego, dif);
+			pregWindow2.setVisible(true);
+			pregWindow2.setTitle("Jugador 2");
+			pregWindow2.setLocation(pregWindow1.getX()+pregWindow1.getWidth(), pregWindow1.getY());
+			}
+
+			dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private void buscarJugadores(final Controlador controlador){
 		java.util.List<Jugador> jugadores = null;		
 		try{
 			jugadores = controlador.encontrarJugadores();
 		}
 		catch(Exception e){e.printStackTrace();}		
-		comboBoxUsuario.addItem(jugadores.iterator().next()); // refactor with Jugador item = jugadores.iterator().next(); ... .addItem(item);
+		comboBoxUsuario.addItem(jugadores.iterator().next().getNombre()); // refactor with Jugador item = jugadores.iterator().next(); ... .addItem(item);
 	}
 	
-	public String get_categoria(){
-		return comboBoxCategoria.getSelectedItem().toString();		
-	}
+
 	
 	public String get_dificultad(){
 		return comboBoxDificultad.getSelectedItem().toString();
 	}
-	
-	public String get_jugador(){
-		return comboBoxUsuario.getSelectedItem().toString();
-	}
+
 }

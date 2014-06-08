@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import persistencia.DAL;
@@ -53,21 +54,21 @@ public class Controlador {
 		}
 	}
 
-	public List<Jugador> encontrarJugadores() throws LogicaExcepcion {
+	public ArrayList<Jugador> encontrarJugadores() throws LogicaExcepcion {
 		try {
 			return dal.encontrarJugadores();
 		} catch (DAOExcepcion e) {
 			throw new LogicaExcepcion(e);
 		}
 	}
-	public List<PreguntaFacil> get_pregunta_facil_por_tema(String tema) throws LogicaExcepcion, DAOExcepcion {
-		return dal.get_pregunta_facil_por_tema(tema);
+	public ArrayList<PreguntaBasica> get_preguntas_por_tema(String tema) throws LogicaExcepcion, DAOExcepcion {
+		return dal.get_preguntas_por_tema(tema);
 	}
-	public List<PreguntaDificil> get_pregunta_dificil_por_tema(String tema) throws LogicaExcepcion, DAOExcepcion {
-		return dal.get_pregunta_dificil_por_tema(tema);
+	public String[]	 get_respuestas(PreguntaBasica pB) throws DAOExcepcion {
+		return dal.get_respuestas(pB);
 	}
 	
-	public void actualizarJugador(Jugador j) throws LogicaExcepcion, DAOExcepcion{
-		dal.actualizarJugador(j);
+	public void actualizarJugador(Jugador j) throws DAOExcepcion{
+	dal.actualizarJugador(j);
 	}
 }

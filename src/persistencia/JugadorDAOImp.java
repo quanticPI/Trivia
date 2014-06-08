@@ -74,14 +74,14 @@ public class JugadorDAOImp implements IJugadorDAO{
 	}
 
 	@Override
-	public List<Jugador> encontrarJugadores() throws DAOExcepcion {
+	public ArrayList<Jugador> encontrarJugadores() throws DAOExcepcion {
 		// TODO Auto-generated method stub
 
 		connManager.connect();
 		ResultSet rs = connManager.queryDB("select * from USUARIO");
 		connManager.close();
 
-		List<Jugador> listaJugadores = new ArrayList<Jugador>();
+		ArrayList<Jugador> listaJugadores = new ArrayList<Jugador>();
 		try {
 			while (rs.next()) {
 				Jugador j = encontrarJugador(rs
