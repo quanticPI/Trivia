@@ -23,15 +23,7 @@ public class Jugador {
 	
 	public Jugador(String nombre){
 		this.nombre = nombre;
-		this.acertadasH = 0;
-		this.acertadasD = 0;
-		this.acertadasC = 0;
-		this.acertadasM = 0;
-		this.falladasH = 0;
-		this.falladasD = 0;
-		this.falladasC = 0;
-		this.falladasM = 0;
-		this.total = 0;
+		this.puntosActual = 0;
 	}
 	
 	public String getNombre(){

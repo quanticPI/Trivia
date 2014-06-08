@@ -27,7 +27,26 @@ public class JugadorDAOImp implements IJugadorDAO{
 			connManager.connect();
 
 			connManager
-					.updateDB("insert into USUARIO (NOMBRE)values('" + nombre
+					.updateDB("insert into USUARIO (NOMBRE, CINE_ACERTADAS, CINE__FALLADAS, DEPORTE_ACERTADAS, DEPORTE_FALLADAS, HISTORIA_ACERTADAS, HISTORIA_FALLADAS, MUSICA_ACERTADAS, MUSICA__FALLADAS, PUNTUACION_TOTAL)values('" 
+							+ nombre 
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+0
+							+ "','"
+							+ 0
 							+ "')");
 
 			connManager.close();
@@ -103,12 +122,23 @@ public class JugadorDAOImp implements IJugadorDAO{
 			connManager.connect();
 
 			ResultSet rs = connManager
-					.queryDB("select NOMBRE from USUARIO where NOMBRE= '"
+					.queryDB("select * from USUARIO where NOMBRE= '"
 							+ nombre + "'");
 			connManager.close();
-			if (rs.next())
-				return new Jugador(nombre);
-			else
+			if (rs.next()){
+				Jugador j = new Jugador(nombre);
+				j.setAcertadasC(rs.getInt("CINE_ACERTADAS"));
+				j.setAcertadasH(rs.getInt("HISTORIA_ACERTADAS"));
+				j.setAcertadasD(rs.getInt("DEPORTE_ACERTADAS"));
+				j.setAcertadasM(rs.getInt("MUSICA_ACERTADAS"));
+				j.setFalladasC(rs.getInt("CINE__FALLADAS"));
+				j.setFalladasH(rs.getInt("HISTORIA_FALLADAS"));
+				j.setFalladasD(rs.getInt("DEPORTE_FALLADAS"));
+				j.setFalladasM(rs.getInt("MUSICA__FALLADAS"));
+				j.setTotal(rs.getInt("PUNTUACION_TOTAL"));
+				return j;
+			}
+				else
 				return null;
 		} catch (SQLException e) {
 			throw new DAOExcepcion(e);
