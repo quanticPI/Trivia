@@ -55,8 +55,9 @@ public class puntuacionAvanzada extends JDialog {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		tablePuntuacionAvanzada = new JTable(new PuntuacionTableModel());
+		tablePuntuacionAvanzada = new JTable(new PuntuacionAvanzadaTableModel());
 		scrollPane.setViewportView(tablePuntuacionAvanzada);
+		
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
@@ -89,7 +90,7 @@ public class puntuacionAvanzada extends JDialog {
 			List<Jugador> listaJugador= control.encontrarJugadores(); 
 			Iterator<Jugador> it= listaJugador.iterator();
 			Jugador ju;
-			PuntuacionTableModel model = (PuntuacionTableModel) tablePuntuacionAvanzada.getModel(); 
+			PuntuacionAvanzadaTableModel model = (PuntuacionAvanzadaTableModel) tablePuntuacionAvanzada.getModel(); 
 			model.clear();
 			while (it.hasNext()){
 				ju=it.next(); 
@@ -102,7 +103,7 @@ public class puntuacionAvanzada extends JDialog {
 	}
 	
 	
-	class PuntuacionTableModel extends AbstractTableModel {
+	class PuntuacionAvanzadaTableModel extends AbstractTableModel {
 		
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames = { "Usuario", "Cine Acertadas", "Cine Falladas", "Deporte Acertadas", "Deporte Falladas", "Historia Acertadas", "Historia Falladas", "Mœsica Acertadas", "Mœsica Falladas", "Total Acertadas"};

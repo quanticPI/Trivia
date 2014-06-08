@@ -126,7 +126,7 @@ public class jugar extends JDialog {
 		
 		JLabel lblUsuario1 = new JLabel("Usuario 1:");
 		
-		comboBoxUsuario = new JComboBox<String>();
+		comboBoxUsuario = new JComboBox();
 		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		comboBoxUsuario.setToolTipText("");
 		ArrayList<Jugador> jugadores = controlador.encontrarJugadores();
@@ -289,7 +289,6 @@ public class jugar extends JDialog {
 		
 	}
 
-	
 	public String get_dificultad(){
 		return comboBoxDificultad.getSelectedItem().toString();
 	}

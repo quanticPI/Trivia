@@ -23,7 +23,7 @@ public class Jugador {
 	
 	public Jugador(String nombre){
 		this.nombre = nombre;
-		this.total = 0;
+		this.puntosActual = 0;
 	}
 	
 	public String getNombre(){
