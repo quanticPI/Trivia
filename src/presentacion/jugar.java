@@ -39,8 +39,8 @@ public class jugar extends JDialog {
 	private JLabel lblUsuario2;
 	private JRadioButton radioButton1;
 	private JRadioButton radioButton2;
-	private JComboBox<String> comboBoxUsuario;
-	private JComboBox<String> comboBoxUsuario2;
+	private JComboBox comboBoxUsuario;
+	private JComboBox comboBoxUsuario2;
 	private JComboBox comboBoxCategoria;
 	private JComboBox comboBoxDificultad;
 	private FabricaJuego fabricaJuego;
@@ -125,7 +125,7 @@ public class jugar extends JDialog {
 		
 		JLabel lblUsuario1 = new JLabel("Usuario 1:");
 		
-		comboBoxUsuario = new JComboBox<String>();
+		comboBoxUsuario = new JComboBox();
 		comboBoxUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar Usuario"}));
 		comboBoxUsuario.setToolTipText("");
 		ArrayList<Jugador> jugadores = controlador.encontrarJugadores();
