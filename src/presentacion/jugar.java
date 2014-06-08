@@ -286,16 +286,6 @@ public class jugar extends JDialog {
 		
 	}
 	
-	private void buscarJugadores(final Controlador controlador){
-		java.util.List<Jugador> jugadores = null;		
-		try{
-			jugadores = controlador.encontrarJugadores();
-		}
-		catch(Exception e){e.printStackTrace();}		
-		comboBoxUsuario.addItem(jugadores.iterator().next().getNombre()); // refactor with Jugador item = jugadores.iterator().next(); ... .addItem(item);
-	}
-	
-
 	
 	public String get_dificultad(){
 		return comboBoxDificultad.getSelectedItem().toString();
