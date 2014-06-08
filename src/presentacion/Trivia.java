@@ -133,7 +133,7 @@ public class Trivia {
 	public void verPuntuacionActionPerformed(ActionEvent evt){
 		try{
 			puntuacion pu = new puntuacion(controlador); 
-			pu.cargaPuntuacion();
+			pu.cargaPuntuacion(controlador);
 			pu.setVisible(true);		
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);

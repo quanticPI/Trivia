@@ -1,68 +1,69 @@
 package presentacion;
 
-import javax.swing.table.AbstractTableModel;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JButton;
-
-import excepciones.*;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import logica.Controlador;
-import logica.Jugador;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
+import excepciones.*;
+import logica.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class puntuacionAvanzada extends JDialog {
+public class puntuacion extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable tablePuntuacionAvanzada;
+	private JTable tablePuntuacion;
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	/*
+
+	public static void main(String[] args) {
 		try {
-			puntuacionAvanzada dialog = new puntuacionAvanzada(control);
+			puntuacion dialog = new puntuacion(control);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
-
+	}
+	*/
 	
-	public puntuacionAvanzada(final Controlador control) throws LogicaExcepcion, DAOExcepcion{
-		setBounds(130, 130, 639, 311);	
-		setTitle("Consultar Puntuaci\u00F3n Avanzada");
+	public puntuacion(final Controlador control) throws LogicaExcepcion, DAOExcepcion{
+		setBounds(130, 130, 433, 352);	
+		setTitle("Consultar Puntuaci\u00F3n");
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{5, 0};
-		gridBagLayout.rowHeights = new int[]{5, 5, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{309, 117, 0};
+		gridBagLayout.rowHeights = new int[]{291, 29, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		
-		tablePuntuacionAvanzada = new JTable(new PuntuacionTableModel());
-		scrollPane.setViewportView(tablePuntuacionAvanzada);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
 		getContentPane().add(scrollPane, gbc_scrollPane);
+		
+		tablePuntuacion = new JTable(new PuntuacionTableModel());
+		scrollPane.setViewportView(tablePuntuacion);
 		
 		JButton aceptarButton = new JButton("Aceptar");
 		aceptarButton.addActionListener(new ActionListener() {
@@ -76,20 +77,41 @@ public class puntuacionAvanzada extends JDialog {
 				}
 			}
 		});
+		
+		JButton avanzadaButton = new JButton("Puntuaci\u00F3n Avanzada");
+		avanzadaButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				try{
+					puntuacionAvanzada puAvan = new puntuacionAvanzada(control); 
+					puAvan.setVisible(true);	
+					
+				}
+				catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		GridBagConstraints gbc_avanzadaButton = new GridBagConstraints();
+		gbc_avanzadaButton.anchor = GridBagConstraints.NORTHEAST;
+		gbc_avanzadaButton.insets = new Insets(0, 0, 0, 5);
+		gbc_avanzadaButton.gridx = 0;
+		gbc_avanzadaButton.gridy = 1;
+		getContentPane().add(avanzadaButton, gbc_avanzadaButton);
 		GridBagConstraints gbc_aceptarButton = new GridBagConstraints();
-		gbc_aceptarButton.anchor = GridBagConstraints.NORTHEAST;
-		gbc_aceptarButton.gridx = 0;
+		gbc_aceptarButton.anchor = GridBagConstraints.NORTH;
+		gbc_aceptarButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_aceptarButton.gridx = 1;
 		gbc_aceptarButton.gridy = 1;
 		getContentPane().add(aceptarButton, gbc_aceptarButton);
 	}
 	
-	
 	public void cargaPuntuacion(final Controlador control){ 
 		try{
 			List<Jugador> listaJugador= control.encontrarJugadores(); 
-			Iterator<Jugador> it= listaJugador.iterator();
+			Iterator<Jugador>it= listaJugador.iterator();
 			Jugador ju;
-			PuntuacionTableModel model = (PuntuacionTableModel) tablePuntuacionAvanzada.getModel(); 
+			PuntuacionTableModel model = (PuntuacionTableModel) tablePuntuacion.getModel(); 
 			model.clear();
 			while (it.hasNext()){
 				ju=it.next(); 
@@ -105,7 +127,7 @@ public class puntuacionAvanzada extends JDialog {
 	class PuntuacionTableModel extends AbstractTableModel {
 		
 		private static final long serialVersionUID = 1L;
-		private String[] columnNames = { "Usuario", "Cine Acertadas", "Cine Falladas", "Deporte Acertadas", "Deporte Falladas", "Historia Acertadas", "Historia Falladas", "Mœsica Acertadas", "Mœsica Falladas", "Total Acertadas"};
+		private String[] columnNames = { "Usuario", "Puntuaci—n"};
 		private ArrayList<Jugador> data = new ArrayList<Jugador>();
 		
 		public int getColumnCount(){ 
@@ -124,15 +146,7 @@ public class puntuacionAvanzada extends JDialog {
 			Jugador ju = data.get(row);
 			switch(col){
 				case 0: return ju.getNombre();
-				case 1: return ju.getAcertadasC(); 
-				case 2:	return ju.getFalladasC();
-				case 3: return ju.getAcertadasD(); 
-				case 4:	return ju.getFalladasD();
-				case 5: return ju.getAcertadasH(); 
-				case 6:	return ju.getFalladasH();
-				case 7: return ju.getAcertadasM(); 
-				case 8:	return ju.getFalladasM();
-				case 9:return ju.getPuntos();
+				case 1: return ju.getPuntos();
 				default: return null;
 			}
 		}
