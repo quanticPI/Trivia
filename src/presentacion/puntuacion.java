@@ -83,6 +83,7 @@ public class puntuacion extends JDialog {
 			public void actionPerformed(ActionEvent arg0){
 				try{
 					puntuacionAvanzada puAvan = new puntuacionAvanzada(control); 
+					puAvan.cargaPuntuacion(control);
 					puAvan.setVisible(true);	
 					
 				}
