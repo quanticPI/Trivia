@@ -59,21 +59,33 @@ public class pregunta extends JFrame implements Observer {
 		
 		JRadioButton botonRes1 = new JRadioButton("New radio button");
 		botonRes1.setText(p.getRespuesta(0));
+		botonRes1.setActionCommand(botonRes1.getText());
 		buttonGroup.add(botonRes1);
 		
 		JRadioButton botonRes2 = new JRadioButton("New radio button");
 		botonRes2.setText(p.getRespuesta(1));
+		botonRes2.setActionCommand(botonRes2.getText());
 		buttonGroup.add(botonRes2);
 		
 		JRadioButton botonRes3 = new JRadioButton("New radio button");
 		buttonGroup.add(botonRes3);
+		botonRes3.setActionCommand(botonRes3.getText());
 		botonRes3.setVisible(false);
 
 		
 		JRadioButton botonRes4 = new JRadioButton("New radio button");
 		buttonGroup.add(botonRes4);
+		botonRes4.setActionCommand(botonRes4.getText());
 		botonRes4.setVisible(false);
 
+		 
+		if(dif.equals("Difícil")){
+		botonRes3.setText(p.getRespuesta(2));
+		botonRes3.setVisible(true);
+		botonRes4.setText(p.getRespuesta(3));
+		botonRes4.setVisible(true);
+
+		}
 		 
 		if(dif.equals("Difícil")){
 		botonRes3.setText(p.getRespuesta(2));
