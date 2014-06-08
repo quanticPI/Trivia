@@ -110,6 +110,14 @@ public class Jugador {
 		iter.next().actualizar();	
 	}
 	
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
 	public void registrarObs(Observer o){
 		observadores.add(o);
 	}
