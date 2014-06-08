@@ -1,28 +1,30 @@
 package presentacion;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
 import logica.Controlador;
 import logica.IPregunta;
 import logica.Juego;
 import logica.Jugador;
 import logica.Observer;
-
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Component;
+import javax.swing.Box;
 
 @SuppressWarnings("serial")
 public class pregunta extends JFrame implements Observer {
@@ -38,7 +40,7 @@ public class pregunta extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public pregunta(final Controlador controlador, Juego juego, String dif) {
+	public pregunta(final Controlador controlador, Juego juego, String dif, final Jugador j) {
 		this.juego = juego;
 		setTitle("Pregunta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +51,8 @@ public class pregunta extends JFrame implements Observer {
 		initialize();
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		textArea.setWrapStyleWord(true);
 		
 			int i = 0; 	//TODO
@@ -103,62 +107,60 @@ public class pregunta extends JFrame implements Observer {
 		JLabel lblMisPuntos = new JLabel("New label");
 		lblMisPuntos.setText("Jugador " +  juego.getJugador(0).getNombre() + " lleva 0 puntos" );
 		
-		JButton btnOk = new JButton("Ok");
+		JButton btnOk = new JButton("Responder");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.print("correcto");
 				String respuesta = buttonGroup.getSelection().getActionCommand();
-				System.out.print(respuesta);
-
-				if(preguntaActual.compararRespuesta(respuesta) == true)
-					System.out.print("correcto");
+				if(preguntaActual.compararRespuesta(respuesta))
+					j.addPunto();
+				else JOptionPane.showMessageDialog(rootPane, "Respuesta incorrecta", "Error", EXIT_ON_CLOSE);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(158)
-							.addComponent(botonRes4))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(158)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(botonRes1)
-								.addComponent(botonRes2)
-								.addComponent(botonRes3))
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lblPuntosRival)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-									.addComponent(btnOk)
-									.addComponent(lblMisPuntos)))))
+					.addGap(294)
+					.addComponent(lblPuntosRival))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(294)
+					.addComponent(lblMisPuntos))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(158)
+					.addComponent(botonRes1))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(158)
+					.addComponent(botonRes2))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(158)
+					.addComponent(botonRes3))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(158)
+					.addComponent(botonRes4)
+					.addGap(117)
+					.addComponent(btnOk))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(botonRes1)
-						.addComponent(lblPuntosRival))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(botonRes2)
-						.addComponent(lblMisPuntos))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+					.addGap(34)
+					.addComponent(lblPuntosRival)
+					.addComponent(lblMisPuntos)
+					.addGap(41)
+					.addComponent(botonRes1)
+					.addComponent(botonRes2)
+					.addComponent(botonRes3)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonRes4)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(botonRes3)
-							.addComponent(botonRes4)
-							.addGap(21))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnOk)
-							.addContainerGap())))
+							.addGap(10)
+							.addComponent(btnOk))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
