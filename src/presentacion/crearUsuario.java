@@ -86,10 +86,10 @@ public class crearUsuario extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						//Jugador j = new Jugador(txtNombre.getText());
 						try{
-							if(!txtNombre.getText().isEmpty())
+							if(!txtNombre.getText().isEmpty()){
 								controlador.crearJugador(txtNombre.getText());
 							
-							else{
+							}else{
 								JOptionPane.showMessageDialog(rootPane, "No ha introducido un nombre", "Error", EXIT_ON_CLOSE);
 							}
 						}

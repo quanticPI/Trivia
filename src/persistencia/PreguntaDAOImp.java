@@ -21,9 +21,9 @@ public class PreguntaDAOImp implements IPreguntaDAO{
 		}
 	}
 
-	public List<PreguntaFacil> get_pregunta_facil_por_tema(String tema)
+	public ArrayList<PreguntaBasica> get_preguntas_por_tema(String tema)
 			throws DAOExcepcion {
-		ArrayList<PreguntaFacil> listaPreguntas  = new ArrayList<PreguntaFacil>();
+		ArrayList<PreguntaBasica > listaPreguntas  = new ArrayList<PreguntaBasica>();
 	
 		connManager.connect();
 		ResultSet rs = connManager.queryDB("SELECT * FROM PREGUNTA P where P.CATEGORIA =  '"
@@ -34,12 +34,10 @@ public class PreguntaDAOImp implements IPreguntaDAO{
 			while (rs.next()) {
 				PreguntaBasica pB = new PreguntaBasica();
 				pB.setTextoPregunta(rs.getString("Texto_Pregunta"));
-				pB.setRespuesta(rs.getString("Respuesta_Correcta"));
+				pB.setRespuestaCorrecta(rs.getString("Respuesta_Correcta"));
 				pB.setCat(tema);
-				PreguntaFacil p = new PreguntaFacil(pB);
-				p.setPosibleRespuesta(rs.getString("Respuesta_Correcta"));
-				p.setPosibleRespuesta(rs.getString("Respuesta_Falsa1"));		
-				listaPreguntas.add(p);
+						
+				listaPreguntas.add(pB);
 			}
 			return listaPreguntas;
 		} catch (Exception e) {
@@ -51,29 +49,24 @@ public class PreguntaDAOImp implements IPreguntaDAO{
 	
 	}
 
-	public List<PreguntaDificil> get_pregunta_dificil_por_tema(String tema)
+	public String[] get_respuestas(PreguntaBasica pB)
 			throws DAOExcepcion {
-		ArrayList<PreguntaDificil> listaPreguntas  = new ArrayList<PreguntaDificil>();
+		String[] respuestas  = new String[4];
 	
 		connManager.connect();
-		ResultSet rs = connManager.queryDB("SELECT * FROM PREGUNTA P where P.CATEGORIA =  '"
-				+ tema + "' ORDER BY RAND() LIMIT 10");
+		ResultSet rs = connManager.queryDB("SELECT * FROM PREGUNTA P where P.Texto_Pregunta =  '"
+				+ pB.getTextoPregunta()  + "'");
 		connManager.close();
 
 		try {
-			while (rs.next()) {
-				PreguntaBasica pB = new PreguntaBasica();
-				pB.setTextoPregunta(rs.getString("Texto_Pregunta"));
-				pB.setRespuesta(rs.getString("Respuesta_Correcta"));
-				pB.setCat(tema);
-				PreguntaDificil p = new PreguntaDificil(pB);
-				p.setPosibleRespuesta(rs.getString("Respuesta_Correcta"));
-				p.setPosibleRespuesta(rs.getString("Respuesta_Falsa1"));	
-				p.setPosibleRespuesta(rs.getString("Respuesta_Falsa2"));		
-				p.setPosibleRespuesta(rs.getString("Respuesta_Falsa3"));		
-				listaPreguntas.add(p);
+			if (rs.next()) {
+				
+				respuestas[0] =  rs.getString("Respuesta_Correcta");
+				respuestas[1] = rs.getString("Respuesta_Falsa1");	
+				respuestas[2] = rs.getString("Respuesta_Falsa2");		
+				respuestas[3] = rs.getString("Respuesta_Falsa3");		
 			}
-			return listaPreguntas;
+			return respuestas;
 		} catch (Exception e) {
 			throw new DAOExcepcion(e);
 		}

@@ -3,33 +3,16 @@ package logica;
  * La pregunta a decorar
  */
 public class PreguntaBasica implements IPregunta{
-		
-	protected String cat;
-	//el texto de la pregunta
+	
+	private String respuestaCorrecta;
+	private String cat;
 	private String textoPregunta;
-	// array con las posibles respuestas
-	//private String[] respuestas;
-	// indice de la respuesta correcta
-	//PARA REFACTORIZAR
-	private String respuestaCorrecta;	
 	
-	
+
 	//Constructor
 	public PreguntaBasica(){
-		this.textoPregunta = "";
-		this.respuestaCorrecta = "";
-		//for(int i=0; i<numPreguntas; i++)
-		//	respuestas[0]="";
-	}
-	
-	public String getCat() {
-		return this.cat;
-	}
 
-	public void setCat(String cat) {
-		this.cat = cat;
 	}
-
 	
 	public void setTextoPregunta(String p){
 		this.textoPregunta = p;
@@ -38,13 +21,47 @@ public class PreguntaBasica implements IPregunta{
 	public String getTextoPregunta(){
 		return this.textoPregunta;
 	}
-	
-	public void setRespuesta(String res){
-		this.respuestaCorrecta = res;
-	}
+
 	
 	public String getRespuestaCorrecta(){
 		return this.respuestaCorrecta;
+	}
+	
+	public void setRespuestaCorrecta(String res){
+		 this.respuestaCorrecta = res;
+	}
+	
+	public String getCat() {
+		return cat;
+	}
+
+	public void setCat(String cat) {
+		this.cat = cat;
+	}
+	
+
+	@Override
+	public boolean compararRespuesta(String resp) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setRespuestas(String[] respuestas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] getRespuestas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getRespuesta(int i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

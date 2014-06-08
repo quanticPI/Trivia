@@ -1,6 +1,6 @@
 package logica;
 
-public class Trivia {
+public class Trivia {/*
 
 	public static void main(String[] args) {
 		FabricaJuego fabrica = new FabricaConcreta();
@@ -12,6 +12,6 @@ public class Trivia {
 		game.setPregunta(preg, 0);
 		System.out.println(game.getPregunta(0).getRespuestaCorrecta());
 		
-	}
+	}*/
 	
 }

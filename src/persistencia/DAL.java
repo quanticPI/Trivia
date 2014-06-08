@@ -1,10 +1,11 @@
 package persistencia;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import excepciones.DAOExcepcion;
 import logica.Jugador;
+import logica.PreguntaBasica;
 import logica.PreguntaDificil;
 import logica.PreguntaFacil;
 
@@ -38,18 +39,18 @@ public class DAL {
 
 		}
 
-		public List<Jugador> encontrarJugadores() throws DAOExcepcion {
+		public ArrayList<Jugador> encontrarJugadores() throws DAOExcepcion {
 			return jugadorDAO.encontrarJugadores();
 		}
 
-		public List<PreguntaFacil> get_pregunta_facil_por_tema(String tema) throws DAOExcepcion {
+		public ArrayList<PreguntaBasica> get_preguntas_por_tema(String tema) throws DAOExcepcion {
 			// TODO Auto-generated method stub
-			return preguntaDAO.get_pregunta_facil_por_tema(tema) ;
+			return preguntaDAO.get_preguntas_por_tema(tema);
 		}
 		
-		public List<PreguntaDificil> get_pregunta_dificil_por_tema(String tema) throws DAOExcepcion {
+		public  String[] get_respuestas(PreguntaBasica pB) throws DAOExcepcion {
 			// TODO Auto-generated method stub
-			return preguntaDAO.get_pregunta_dificil_por_tema(tema) ;
+			return preguntaDAO.get_respuestas(pB);
 		}
 
 		public void actualizarJugador(Jugador j) throws DAOExcepcion {

@@ -1,39 +1,27 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PreguntaFacil extends Decorador{
 	
-	//private String[] respuestas = new String[2];
-	private int j = 0;
 	
-	public PreguntaFacil(IPregunta p){
+	public PreguntaFacil(IPregunta p, String[] respuestas){
 		super(p);
-		for(int i = 0; i < 2; i++)
-			super.respuestas[i]="";
+		this.respuestas = new String[2];
+		this.setRespuestas(respuestas);
 	}
+	@Override
+	public void setRespuestas(String[] respuestas) {
+		for(int i=0; i<2;i++)
 	
-	public void setPosibleRespuesta(String res){
-		if(j < 2){
-			respuestas[j] = res;
-			j++;
-		}
-		else System.out.print("No puede insertat mas respuestas");
+	this.respuestas[i] = respuestas[i];
 	}
-	
-	public void setRespuesta(String res){
-		super.setRespuesta(res);
+	@Override
+	public String[] getRespuestas() {
+		return respuestas;
 	}
-	
-	public String getTextoPregunta(){
-		return super.getTextoPregunta();
-	}
-	
-	public void setCategoria(int cat){
-		
-	}
-	
-	public boolean respuestaOK(String res){
-		if(super.getRespuestaCorrecta().equals(res))
-			return true;
-		return false;
-	}
+
+
+
 }
