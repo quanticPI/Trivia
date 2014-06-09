@@ -83,7 +83,7 @@ public class pregunta extends JFrame implements Observer {
 		botonRes4.setVisible(false);
 
 		 
-		if(dif.equals("Difícil")){
+		if(dif.equals("Dificil")){
 		botonRes3.setText(p.getRespuesta(2));
 		botonRes3.setVisible(true);
 		botonRes4.setText(p.getRespuesta(3));
@@ -99,7 +99,7 @@ public class pregunta extends JFrame implements Observer {
 
 		}
 		
-		JLabel lblPuntosRival = new JLabel("New label");
+		 lblPuntosRival = new JLabel("New label");
 		//lblPuntosRival.setText("Jugador2 lleva  0 puntos");
 		if (juego.getJugador(1) ==  null){ lblPuntosRival.setVisible(false);}
 		else lblPuntosRival.setText("Jugador " +  juego.getJugador(1).getNombre() + " lleva 0 puntos");

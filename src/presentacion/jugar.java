@@ -278,7 +278,12 @@ public class jugar extends JDialog {
 			pregunta pregWindow2 = new pregunta(controlador, juego, dif, j[1]);
 			pregWindow2.setVisible(true);
 			pregWindow2.setTitle("Jugador 2");
+			j[0].registrarObs(pregWindow2);
+
+			j[1].registrarObs(pregWindow1);
 			j[1].registrarObs(pregWindow2);
+
+
 			pregWindow2.setLocation(pregWindow1.getX()+pregWindow1.getWidth(), pregWindow1.getY());
 			}
 

@@ -107,7 +107,9 @@ public class Jugador {
 	//notoficar cambios en la puntuacion
 	public void notificarObservador(){
 		Iterator<Observer> iter = observadores.iterator();
+		while (iter.hasNext()){
 		iter.next().actualizar();	
+		}
 	}
 	
 	public int getPuntosActuales() {
