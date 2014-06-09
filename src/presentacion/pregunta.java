@@ -100,11 +100,11 @@ public class pregunta extends JFrame implements Observer {
 		}
 		
 		JLabel lblPuntosRival = new JLabel("New label");
-		lblPuntosRival.setText("Jugador2 lleva  0 puntos");
+		//lblPuntosRival.setText("Jugador2 lleva  0 puntos");
 		if (juego.getJugador(1) ==  null){ lblPuntosRival.setVisible(false);}
-
+		else lblPuntosRival.setText("Jugador " +  juego.getJugador(1).getNombre() + " lleva 0 puntos");
 	
-		JLabel lblMisPuntos = new JLabel("New label");
+		lblMisPuntos = new JLabel("New label");
 		lblMisPuntos.setText("Jugador " +  juego.getJugador(0).getNombre() + " lleva 0 puntos" );
 		
 		JButton btnOk = new JButton("Responder");
@@ -172,10 +172,10 @@ public class pregunta extends JFrame implements Observer {
 	@Override
 	public void actualizar() {
 		Jugador	jugador0 = juego.getJugador(0);
-		lblMisPuntos.setText("Jugador" + jugador0.getNombre() + " lleva " + jugador0.getPuntos() + " puntos");
-		if (!juego.getJugador(1).equals(null)){
+		lblMisPuntos.setText("Jugador " + jugador0.getNombre() + " lleva " + jugador0.getPuntosActuales() + " puntos");
+		if (!(juego.getJugador(1) == null)){
 		Jugador jugador1 = juego.getJugador(1);
-		lblPuntosRival.setText("Jugador " + jugador1.getNombre() + "lleva " + jugador1.getPuntos() + " puntos");
+		lblPuntosRival.setText("Jugador " + jugador1.getNombre() + "lleva " + jugador1.getPuntosActuales() + " puntos");
 		
 		
 	}}

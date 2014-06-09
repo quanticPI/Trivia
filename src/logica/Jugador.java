@@ -110,8 +110,8 @@ public class Jugador {
 		iter.next().actualizar();	
 	}
 	
-	public int getTotal() {
-		return total;
+	public int getPuntosActuales() {
+		return puntosActual;
 	}
 
 	public void setTotal(int total) {
