@@ -113,6 +113,7 @@ public class pregunta extends JFrame implements Observer {
 				}
 				else JOptionPane.showMessageDialog(rootPane, "Respuesta incorrecta", "Error", EXIT_ON_CLOSE);
 			}
+			
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -188,7 +189,7 @@ public class pregunta extends JFrame implements Observer {
 		lblMisPuntos.setText("Jugador " + jugador0.getNombre() + " lleva " + jugador0.getPuntosActuales() + " puntos");
 		if (!(juego.getJugador(1) == null)){
 		Jugador jugador1 = juego.getJugador(1);
-		lblPuntosRival.setText("Jugador " + jugador1.getNombre() + "lleva " + jugador1.getPuntosActuales() + " puntos");
+		lblPuntosRival.setText("Jugador " + jugador1.getNombre() + " lleva " + jugador1.getPuntosActuales() + " puntos");
 		
 		
 	}}
