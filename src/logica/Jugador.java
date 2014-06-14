@@ -18,7 +18,6 @@ public class Jugador {
 	private int total;
 	private int puntosActual;
 	
-	//private presentacion.pregunta observador;
 	private ArrayList<Observer> observadores = new ArrayList<Observer>();
 	
 	public Jugador(String nombre){
@@ -39,7 +38,7 @@ public class Jugador {
 	}
 
 	public void setAcertadasH(int acertadasH) {
-		this.acertadasH = acertadasH;
+		this.acertadasH += acertadasH;
 	}
 
 	public int getAcertadasD() {
@@ -47,7 +46,7 @@ public class Jugador {
 	}
 
 	public void setAcertadasD(int acertadasD) {
-		this.acertadasD = acertadasD;
+		this.acertadasD += acertadasD;
 	}
 
 	public int getAcertadasC() {
@@ -55,7 +54,7 @@ public class Jugador {
 	}
 
 	public void setAcertadasC(int acertadasC) {
-		this.acertadasC = acertadasC;
+		this.acertadasC += acertadasC;
 	}
 
 	public int getAcertadasM() {
@@ -63,7 +62,7 @@ public class Jugador {
 	}
 
 	public void setAcertadasM(int acertadasM) {
-		this.acertadasM = acertadasM;
+		this.acertadasM += acertadasM;
 	}
 
 	public int getFalladasH() {
@@ -71,7 +70,7 @@ public class Jugador {
 	}
 
 	public void setFalladasH(int falladasH) {
-		this.falladasH = falladasH;
+		this.falladasH += falladasH;
 	}
 
 	public int getFalladasD() {
@@ -79,7 +78,7 @@ public class Jugador {
 	}
 
 	public void setFalladasD(int falladasD) {
-		this.falladasD = falladasD;
+		this.falladasD += falladasD;
 	}
 
 	public int getFalladasC() {
@@ -87,7 +86,7 @@ public class Jugador {
 	}
 
 	public void setFalladasC(int falladasC) {
-		this.falladasC = falladasC;
+		this.falladasC += falladasC;
 	}
 
 	public int getFalladasM() {
@@ -95,7 +94,7 @@ public class Jugador {
 	}
 
 	public void setFalladasM(int falladasM) {
-		this.falladasM = falladasM;
+		this.falladasM += falladasM;
 	}
 
 	public void addPunto(){
@@ -117,7 +116,7 @@ public class Jugador {
 	}
 
 	public void setTotal(int total) {
-		this.total = total;
+		this.total += total;
 	}
 
 	public void registrarObs(Observer o){

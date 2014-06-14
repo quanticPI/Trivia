@@ -1,8 +1,10 @@
 package presentacion;
 
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -15,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import logica.Controlador;
@@ -23,11 +24,7 @@ import logica.IPregunta;
 import logica.Juego;
 import logica.Jugador;
 import logica.Observer;
-import java.awt.Font;
-import java.awt.Component;
-import java.util.Enumeration;
-
-import javax.swing.Box;
+import excepciones.DAOExcepcion;
 
 @SuppressWarnings("serial")
 public class pregunta extends JFrame implements Observer {
@@ -41,15 +38,18 @@ public class pregunta extends JFrame implements Observer {
 	private JTextArea textArea;
 	private JRadioButton botonRes3;
 	private int i = 1;
+	private String respuesta;
+	private IPregunta p;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public pregunta(final Controlador controlador, Juego juego, String dif, final Jugador j) {
+	public pregunta(final Controlador controlador, final Juego juego, String dif, final Jugador j) {
 		this.juego = juego;
 		setTitle("Pregunta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(100, 100, 505, 413);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,10 +58,10 @@ public class pregunta extends JFrame implements Observer {
 		
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		textArea.setWrapStyleWord(true);
 		
-		final IPregunta p = juego.getPregunta(0);
+		p = juego.getPregunta(0);
 		preguntaActual = p;
 		textArea.setText(p.getTextoPregunta());
 		
@@ -106,14 +106,42 @@ public class pregunta extends JFrame implements Observer {
 		JButton btnOk = new JButton("Responder");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String respuesta = buttonGroup.getSelection().getActionCommand();
+				Enumeration<AbstractButton> ab_enum = buttonGroup.getElements(); 
+				AbstractButton thisboton = ab_enum.nextElement();
+				// Refactorizazion: 
+				while(ab_enum.hasMoreElements()){
+					if(thisboton.isSelected())
+						respuesta = thisboton.getText();
+					ab_enum.nextElement();
+				}
 				if(preguntaActual.compararRespuesta(respuesta)){
 					j.addPunto();
+					String cat = juego.getCategoria();
+					switch(cat){
+						case "HISTORIA": j.setAcertadasH(j.getPuntosActuales());
+									     break;
+						case "CINE": j.setAcertadasC(j.getPuntosActuales());
+									 break;
+					}
 					cambiarPregunta();
+					buttonGroup.clearSelection();
 				}
 				else JOptionPane.showMessageDialog(rootPane, "Respuesta incorrecta", "Error", EXIT_ON_CLOSE);
 			}
 			
+		});
+		
+		JButton botonCerrar = new JButton("Finalizar");
+		botonCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				j.setTotal(j.getPuntosActuales());
+				try {
+					controlador.actualizarJugador(j);
+				} catch (DAOExcepcion e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -134,7 +162,9 @@ public class pregunta extends JFrame implements Observer {
 					.addGap(158)
 					.addComponent(botonRes3))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(158)
+					.addContainerGap()
+					.addComponent(botonCerrar)
+					.addGap(59)
 					.addComponent(botonRes4)
 					.addGap(117)
 					.addComponent(btnOk))
@@ -159,7 +189,9 @@ public class pregunta extends JFrame implements Observer {
 						.addComponent(botonRes4)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(10)
-							.addComponent(btnOk))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(botonCerrar)
+								.addComponent(btnOk)))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -177,7 +209,7 @@ public class pregunta extends JFrame implements Observer {
 		Enumeration<AbstractButton> botones = buttonGroup.getElements();
 		while(botones.hasMoreElements()){
 			for(int j = 0; j<aux; j++){
-				botones.nextElement().setText(preguntaActual.getRespuesta(j));				
+				botones.nextElement().setText(preguntaActual.getRespuesta(j));	
 			}
 		}
 		i++;

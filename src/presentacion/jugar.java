@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -19,8 +18,6 @@ import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import excepciones.DAOExcepcion;
-import excepciones.LogicaExcepcion;
 import logica.Controlador;
 import logica.FabricaConcreta;
 import logica.FabricaJuego;
@@ -31,6 +28,8 @@ import logica.Observer;
 import logica.PreguntaBasica;
 import logica.PreguntaDificil;
 import logica.PreguntaFacil;
+import excepciones.DAOExcepcion;
+import excepciones.LogicaExcepcion;
 
 @SuppressWarnings("serial")
 public class jugar extends JDialog {
@@ -249,6 +248,7 @@ public class jugar extends JDialog {
 			j[1] = controlador.encontrarJugador( comboBoxUsuario2.getSelectedItem().toString());
 		}
 		juego.setJugadores(j);
+		//juego.setCategoria(comboBoxCategoria.getSelectedItem().toString());
 		ArrayList<PreguntaBasica> pB = controlador.get_preguntas_por_tema(juego.getCategoria());
 		PreguntaBasica[] preguntas = pB.toArray(new PreguntaBasica[10]);
 		IPregunta[] preguntaDecorada = new IPregunta[10];

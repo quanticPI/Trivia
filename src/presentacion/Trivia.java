@@ -12,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import logica.Controlador;
-import logica.FabricaConcreta;
-import logica.FabricaJuego;
-import logica.Juego;
 
 public class Trivia {
 
