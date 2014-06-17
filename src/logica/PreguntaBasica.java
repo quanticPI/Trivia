@@ -23,6 +23,7 @@ public class PreguntaBasica implements IPregunta{
 	}
 
 	
+	
 	public String getRespuestaCorrecta(){
 		return this.respuestaCorrecta;
 	}
@@ -30,7 +31,8 @@ public class PreguntaBasica implements IPregunta{
 	public void setRespuestaCorrecta(String res){
 		 this.respuestaCorrecta = res;
 	}
-	
+
+
 	public String getCat() {
 		return cat;
 	}
@@ -40,10 +42,8 @@ public class PreguntaBasica implements IPregunta{
 	}
 	
 
-	@Override
 	public boolean compararRespuesta(String resp) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getRespuestaCorrecta().equals(resp);	
 	}
 
 	@Override

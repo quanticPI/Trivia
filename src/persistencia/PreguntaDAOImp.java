@@ -51,7 +51,7 @@ public class PreguntaDAOImp implements IPreguntaDAO{
 
 	public String[] get_respuestas(PreguntaBasica pB)
 			throws DAOExcepcion {
-		String[] respuestas  = new String[4];
+		String[] respuestas  = new String[3];
 	
 		connManager.connect();
 		ResultSet rs = connManager.queryDB("SELECT * FROM PREGUNTA P where P.Texto_Pregunta =  '"
@@ -61,10 +61,9 @@ public class PreguntaDAOImp implements IPreguntaDAO{
 		try {
 			if (rs.next()) {
 				
-				respuestas[0] =  rs.getString("Respuesta_Correcta");
-				respuestas[1] = rs.getString("Respuesta_Falsa1");	
-				respuestas[2] = rs.getString("Respuesta_Falsa2");		
-				respuestas[3] = rs.getString("Respuesta_Falsa3");		
+				respuestas[0] = rs.getString("Respuesta_Falsa1");	
+				respuestas[1] = rs.getString("Respuesta_Falsa2");		
+				respuestas[2] = rs.getString("Respuesta_Falsa3");		
 			}
 			return respuestas;
 		} catch (Exception e) {

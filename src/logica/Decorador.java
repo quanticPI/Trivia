@@ -4,6 +4,14 @@ package logica;
 public abstract class Decorador implements IPregunta{
 
 	private IPregunta pregunta;
+	public IPregunta getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(IPregunta pregunta) {
+		this.pregunta = pregunta;
+	}
+
 	protected   String[] respuestas;
 	
 	public Decorador(IPregunta p){
@@ -20,19 +28,24 @@ public abstract class Decorador implements IPregunta{
 		return pregunta.getTextoPregunta();
 	}
 
-	
-	public String getRespuestaCorrecta(){
-		return pregunta.getRespuestaCorrecta();
+	public String[] getRespuestas() {
+		return respuestas;
 	}
 
-	public boolean compararRespuesta(String resp){
-	return this.getRespuestaCorrecta().equals(resp);	
-	}
 	
 	@Override
 	public String getRespuesta(int i) {
 		// TODO Auto-generated method stub
 		return respuestas[i];
+	}
+
+	@Override
+	public String getRespuestaCorrecta() {
+		return pregunta.getRespuestaCorrecta();
+	}
+	@Override
+	public boolean compararRespuesta(String resp) {
+		 return pregunta.compararRespuesta(resp);
 	}
 
 }

@@ -11,13 +11,8 @@ public class PreguntaFacil extends Decorador{
 	}
 	@Override
 	public void setRespuestas(String[] respuestas) {
-		for(int i=0; i<2;i++)
-	
-	this.respuestas[i] = respuestas[i];
-	}
-	@Override
-	public String[] getRespuestas() {
-		return respuestas;
+		this.respuestas[0] = this.getPregunta().getRespuestaCorrecta();
+		this.respuestas[1] = respuestas[1];
 	}
 
 
