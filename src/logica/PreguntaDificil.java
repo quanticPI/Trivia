@@ -12,9 +12,10 @@ public class PreguntaDificil extends Decorador{
 	}
 	@Override
 	public void setRespuestas(String[] respuestas) {
+		System.out.print(respuestas);
 		this.respuestas[0] = this.getPregunta().getRespuestaCorrecta();
-		for(int i=0; i<3; i++)
-	this.respuestas[i] = respuestas[i];
+		for(int i=1; i<4; i++)
+	this.respuestas[i] = respuestas[i-1];
 	}
 
 
