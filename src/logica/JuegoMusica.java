@@ -6,6 +6,10 @@ public class JuegoMusica extends Juego{
 		this.setCategoria("MUSICA");
 	}
 		
-
+	public void ActualizarJugador(Jugador j) {
+		j.setTotal(j.getPuntosActuales());
+		j.setAcertadasM(j.getAcertadasC());
+		
+	}
 
 }

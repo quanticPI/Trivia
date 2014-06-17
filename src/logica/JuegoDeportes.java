@@ -7,4 +7,9 @@ public class JuegoDeportes extends Juego{
 		this.setCategoria("DEPORTES");
  	}	
 
+	public void ActualizarJugador(Jugador j) {
+		j.setTotal(j.getPuntosActuales());
+		j.setAcertadasD(j.getAcertadasC());
+		
+	}
 }

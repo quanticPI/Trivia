@@ -116,13 +116,6 @@ public class pregunta extends JFrame implements Observer {
 				}
 				if(preguntaActual.compararRespuesta(respuesta)){
 					j.addPunto();
-					String cat = juego.getCategoria();
-					switch(cat){
-						case "HISTORIA": j.setAcertadasH(j.getPuntosActuales());
-									     break;
-						case "CINE": j.setAcertadasC(j.getPuntosActuales());
-									 break;
-					}
 					cambiarPregunta();
 					buttonGroup.clearSelection();
 				}
@@ -134,7 +127,7 @@ public class pregunta extends JFrame implements Observer {
 		JButton botonCerrar = new JButton("Finalizar");
 		botonCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				j.setTotal(j.getPuntosActuales());
+				juego.ActualizarJugador(j);
 				try {
 					controlador.actualizarJugador(j);
 				} catch (DAOExcepcion e) {

@@ -34,4 +34,6 @@ public abstract class Juego {
 	public void setJugadores(Jugador[] j){
 		this.jugadores  = j; //poner if si no hay espacio
 	}
+	public abstract void ActualizarJugador(Jugador j);
+	
 }

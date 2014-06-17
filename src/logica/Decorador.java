@@ -12,7 +12,6 @@ public abstract class Decorador implements IPregunta{
 		this.pregunta = pregunta;
 	}
 
-	protected   String[] respuestas;
 	
 	public Decorador(IPregunta p){
 		pregunta = p;
@@ -29,14 +28,14 @@ public abstract class Decorador implements IPregunta{
 	}
 
 	public String[] getRespuestas() {
-		return respuestas;
+		return pregunta.getRespuestas();
 	}
 
 	
 	@Override
 	public String getRespuesta(int i) {
 		// TODO Auto-generated method stub
-		return respuestas[i];
+		return pregunta.getRespuesta(i);
 	}
 
 	@Override
@@ -47,6 +46,7 @@ public abstract class Decorador implements IPregunta{
 	public boolean compararRespuesta(String resp) {
 		 return pregunta.compararRespuesta(resp);
 	}
+	
 	public abstract void setRespuestas(String[] respuestas);	
 
 

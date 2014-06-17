@@ -6,15 +6,19 @@ public class PreguntaFacil extends Decorador{
 	
 	public PreguntaFacil(IPregunta p, String[] respuestas){
 		super(p);
-		this.respuestas = new String[2];
 		this.setRespuestas(respuestas);
 	}
 	@Override
 	public void setRespuestas(String[] respuestas) {
-		this.respuestas[0] = this.getPregunta().getRespuestaCorrecta();
-		this.respuestas[1] = respuestas[1];
+		añadirRespuesta(respuestas[0]);
+
 	}
 
 
+	@Override
+	public void añadirRespuesta(String respuesta) {
+		this.getPregunta().añadirRespuesta(respuesta);
+		
+	}
 
 }
