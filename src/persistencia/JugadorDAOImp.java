@@ -3,7 +3,6 @@ package persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import logica.Jugador;
 import excepciones.DAOExcepcion;
@@ -63,27 +62,10 @@ public class JugadorDAOImp implements IJugadorDAO{
 			connManager.connect();
 
 			connManager
-					.updateDB("insert into USUARIO (NOMBRE, CINE_ACERTADAS, CINE__FALLADAS, DEPORTE_ACERTADAS, DEPORTE_FALLADAS, HISTORIA_ACERTADAS, HISTORIA_FALLADAS, MUSICA_ACERTADAS, MUSICA__FALLADAS, PUNTUACION_TOTAL)values('"
-							+ j.getNombre()
-							+ "','"
-							+ j.getAcertadasC()
-							+ "','"
-							+j.getFalladasC()
-							+ "','"
-							+j.getAcertadasD()
-							+ "','"
-							+j.getFalladasD()
-							+ "','"
-							+j.getAcertadasH()
-							+ "','"
-							+j.getFalladasH()
-							+ "','"
-							+j.getAcertadasM()
-							+ "','"
-							+j.getFalladasM()
-							+ "','"
-							+ j.getPuntos()
-							+ "')");
+					.updateDB("update USUARIO set CINE_ACERTADAS='"+j.getAcertadasC()+"',CINE__FALLADAS='"+j.getFalladasC()+"',DEPORTE_ACERTADAS='"+j.getAcertadasD()+
+									"',DEPORTE_FALLADAS='"+j.getFalladasD()+ "',HISTORIA_ACERTADAS='"+j.getAcertadasH()+"',HISTORIA_FALLADAS='"+j.getFalladasH()+"',MUSICA_ACERTADAS='"+j.getAcertadasM()+
+									"',MUSICA__FALLADAS='"+j.getFalladasM()+ "',PUNTUACION_TOTAL='"+ j.getPuntos()+"'"+
+									"where NOMBRE='"+j.getNombre()+"'");
 
 			connManager.close();
 		} catch (Exception e) {

@@ -26,7 +26,7 @@ public abstract class Decorador implements IPregunta{
 	}
 
 	public boolean compararRespuesta(String resp){
-	return this.getRespuestaCorrecta() == resp;	
+	return this.getRespuestaCorrecta().equals(resp);	
 	}
 	
 	@Override
