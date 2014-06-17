@@ -7,7 +7,6 @@ public interface IPregunta {
 	public String getTextoPregunta();
 	public String getRespuestaCorrecta();
 	public boolean compararRespuesta(String resp);
-	public abstract void setRespuestas(String[] respuestas);	
 	public abstract String[] getRespuestas();
 	public String getRespuesta(int i);
 }

@@ -46,11 +46,7 @@ public class PreguntaBasica implements IPregunta{
 		return this.getRespuestaCorrecta().equals(resp);	
 	}
 
-	@Override
-	public void setRespuestas(String[] respuestas) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public String[] getRespuestas() {

@@ -47,5 +47,7 @@ public abstract class Decorador implements IPregunta{
 	public boolean compararRespuesta(String resp) {
 		 return pregunta.compararRespuesta(resp);
 	}
+	public abstract void setRespuestas(String[] respuestas);	
+
 
 }
