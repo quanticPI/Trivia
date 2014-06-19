@@ -8,8 +8,8 @@ public class JuegoDeportes extends Juego{
  	}	
 
 	public void ActualizarJugador(Jugador j) {
-		j.setTotal(j.getPuntosActuales());
-		j.setAcertadasD(j.getAcertadasC());
+		j.actualizarTotal();
+		j.setAcertadasD(j.getAcertadasD());
 		
 	}
 }

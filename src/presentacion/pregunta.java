@@ -25,6 +25,7 @@ import logica.Juego;
 import logica.Jugador;
 import logica.Observer;
 import excepciones.DAOExcepcion;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class pregunta extends JFrame implements Observer {
@@ -66,12 +67,12 @@ public class pregunta extends JFrame implements Observer {
 		textArea.setText(p.getTextoPregunta());
 		
 		JRadioButton botonRes1 = new JRadioButton("New radio button");
-		botonRes1.setText(p.getRespuesta(0));
+		botonRes1.setText(p.getRespuestaCorrecta());
 		botonRes1.setActionCommand(botonRes1.getText());
 		buttonGroup.add(botonRes1);
 		
 		JRadioButton botonRes2 = new JRadioButton("New radio button");
-		botonRes2.setText(p.getRespuesta(1));
+		botonRes2.setText(p.getRespuesta(0));
 		botonRes2.setActionCommand(botonRes2.getText());
 		buttonGroup.add(botonRes2);
 		
@@ -88,9 +89,9 @@ public class pregunta extends JFrame implements Observer {
 
 		 
 		if(dif.equals("Dificil")){
-		botonRes3.setText(p.getRespuesta(2));
+		botonRes3.setText(p.getRespuesta(1));
 		botonRes3.setVisible(true);
-		botonRes4.setText(p.getRespuesta(3));
+		botonRes4.setText(p.getRespuesta(2));
 		botonRes4.setVisible(true);
 
 		}
@@ -106,20 +107,7 @@ public class pregunta extends JFrame implements Observer {
 		JButton btnOk = new JButton("Responder");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Enumeration<AbstractButton> ab_enum = buttonGroup.getElements(); 
-				AbstractButton thisboton = ab_enum.nextElement();
-				// Refactorizazion: 
-				while(ab_enum.hasMoreElements()){
-					if(thisboton.isSelected())
-						respuesta = thisboton.getText();
-					ab_enum.nextElement();
-				}
-				if(preguntaActual.compararRespuesta(respuesta)){
-					j.addPunto();
-					cambiarPregunta();
-					buttonGroup.clearSelection();
-				}
-				else JOptionPane.showMessageDialog(rootPane, "Respuesta incorrecta", "Error", EXIT_ON_CLOSE);
+				getRespuesta(j);
 			}
 			
 		});
@@ -134,7 +122,9 @@ public class pregunta extends JFrame implements Observer {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				dispose();
 			}
+			
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -143,28 +133,27 @@ public class pregunta extends JFrame implements Observer {
 					.addGap(294)
 					.addComponent(lblPuntosRival))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(294)
-					.addComponent(lblMisPuntos))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(158)
-					.addComponent(botonRes1))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(158)
-					.addComponent(botonRes2))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(158)
-					.addComponent(botonRes3))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(botonCerrar)
-					.addGap(59)
-					.addComponent(botonRes4)
-					.addGap(117)
-					.addComponent(btnOk))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
 					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(161)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(botonRes1)
+						.addComponent(botonRes2)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(botonRes4)
+							.addComponent(botonRes3, Alignment.LEADING)))
+					.addContainerGap(209, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+					.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(botonCerrar)
+						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnOk))
+					.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+						.addGap(294)
+						.addComponent(lblMisPuntos)))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -174,17 +163,17 @@ public class pregunta extends JFrame implements Observer {
 					.addGap(34)
 					.addComponent(lblPuntosRival)
 					.addComponent(lblMisPuntos)
-					.addGap(41)
+					.addGap(18)
 					.addComponent(botonRes1)
 					.addComponent(botonRes2)
 					.addComponent(botonRes3)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(botonRes4)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(botonCerrar)
-								.addComponent(btnOk)))))
+					.addGroup(gl_contentPane.createSequentialGroup()
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(botonRes4))
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(botonCerrar)
+						.addComponent(btnOk)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -196,11 +185,12 @@ public class pregunta extends JFrame implements Observer {
 	private void cambiarPregunta(){
 		preguntaActual = juego.getPregunta(i);
 		textArea.setText(preguntaActual.getTextoPregunta());
-		int aux = 4;
+		int aux = 3;
 		if(!botonRes3.isVisible())
-			aux = 2;
+			aux = 1;
 		Enumeration<AbstractButton> botones = buttonGroup.getElements();
-		while(botones.hasMoreElements()){
+		botones.nextElement().setText(preguntaActual.getRespuestaCorrecta());
+		while(botones.hasMoreElements()){			
 			for(int j = 0; j<aux; j++){
 				botones.nextElement().setText(preguntaActual.getRespuesta(j));	
 			}
@@ -208,6 +198,26 @@ public class pregunta extends JFrame implements Observer {
 		i++;
 	}
 
+	public void getRespuesta(Jugador j){
+		Enumeration<AbstractButton> ab_enum = buttonGroup.getElements(); 
+		AbstractButton thisboton = ab_enum.nextElement();
+		while(ab_enum.hasMoreElements()){
+			if(thisboton.isSelected())
+				respuesta = thisboton.getText();
+					ab_enum.nextElement();
+			}
+		if(preguntaActual.compararRespuesta(respuesta)){
+			j.addPunto();
+			cambiarPregunta();
+			buttonGroup.clearSelection();
+		}
+			else{
+				JOptionPane.showMessageDialog(rootPane, "Respuesta incorrecta. La respuesta correcta es " + preguntaActual.getRespuestaCorrecta(), "Error", EXIT_ON_CLOSE);
+				cambiarPregunta();
+			}
+	}
+	
+	
 	@Override
 	public void actualizar() {
 		Jugador	jugador0 = juego.getJugador(0);

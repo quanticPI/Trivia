@@ -8,7 +8,7 @@ public class JuegoCine extends Juego{
 
 	@Override
 	public void ActualizarJugador(Jugador j) {
-		j.setTotal(j.getPuntosActuales());
+		j.actualizarTotal();
 		j.setAcertadasC(j.getAcertadasC());
 		
 	}

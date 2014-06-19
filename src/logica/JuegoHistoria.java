@@ -6,8 +6,8 @@ public class JuegoHistoria extends Juego{
 		this.setCategoria("HISTORIA");
 	}
 	public void ActualizarJugador(Jugador j) {
-		j.setTotal(j.getPuntosActuales());
-		j.setAcertadasH(j.getAcertadasC());
+		j.actualizarTotal();
+		j.setAcertadasH(j.getAcertadasH());
 		
 	}
 

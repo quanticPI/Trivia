@@ -1,6 +1,7 @@
 package logica;
 
 
+
 public interface IPregunta {
 	
 	public void setTextoPregunta(String pregunta);
@@ -9,5 +10,5 @@ public interface IPregunta {
 	public boolean compararRespuesta(String resp);
 	public  String[] getRespuestas();
 	public String getRespuesta(int i);
-	public void añadirRespuesta(String respuesta);
+	public void anadirRespuesta(String respuesta);
 }

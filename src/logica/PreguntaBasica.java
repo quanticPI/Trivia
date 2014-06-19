@@ -1,4 +1,5 @@
 package logica;
+
 /*
  * La pregunta a decorar
  */
@@ -8,12 +9,12 @@ public class PreguntaBasica implements IPregunta{
 	private String cat;
 	private String textoPregunta;
 	private String[] respuestas;
-	private int num_respuestas = 1;
+	private int num_respuestas = 0;
 	
 
 	//Constructor
 	public PreguntaBasica(){
-		this.respuestas = new String[4];
+		this.respuestas = new String[3];
 
 	}
 
@@ -33,7 +34,7 @@ public class PreguntaBasica implements IPregunta{
 	
 	public void setRespuestaCorrecta(String res){
 		 this.respuestaCorrecta = res;
-		 this.respuestas[0] = respuestaCorrecta;
+		// this.respuestas[0] = respuestaCorrecta;
 
 	}
 
@@ -65,7 +66,7 @@ public class PreguntaBasica implements IPregunta{
 		return this.respuestas[i];
 	} 
 	
-	public void añadirRespuesta(String respuesta){
+	public void anadirRespuesta(String respuesta){
 		this.respuestas[num_respuestas] = respuesta;
 		num_respuestas++;
 	}

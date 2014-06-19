@@ -10,14 +10,14 @@ public class PreguntaFacil extends Decorador{
 	}
 	@Override
 	public void setRespuestas(String[] respuestas) {
-		añadirRespuesta(respuestas[0]);
+		anadirRespuesta(respuestas[0]);
 
 	}
 
 
 	@Override
-	public void añadirRespuesta(String respuesta) {
-		this.getPregunta().añadirRespuesta(respuesta);
+	public void anadirRespuesta(String respuesta) {
+		this.getPregunta().anadirRespuesta(respuesta);
 		
 	}
 

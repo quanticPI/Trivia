@@ -38,6 +38,10 @@ public class Jugador {
 	}
 
 	public void setAcertadasH(int acertadasH) {
+		this.acertadasH = acertadasH;
+	}
+	
+	public void actualizarAcertadasH(int acertadasH) {
 		this.acertadasH += acertadasH;
 	}
 
@@ -46,6 +50,10 @@ public class Jugador {
 	}
 
 	public void setAcertadasD(int acertadasD) {
+		this.acertadasD = acertadasD;
+	}
+	
+	public void actualizarAcertadasD(int acertadasD) {
 		this.acertadasD += acertadasD;
 	}
 
@@ -54,14 +62,22 @@ public class Jugador {
 	}
 
 	public void setAcertadasC(int acertadasC) {
-		this.acertadasC += acertadasC;
+		this.acertadasC = acertadasC;
 	}
 
+	public void actualizarAcertadasC(int acertadasC) {
+		this.acertadasC += acertadasC;
+	}
+	
 	public int getAcertadasM() {
 		return acertadasM;
 	}
 
 	public void setAcertadasM(int acertadasM) {
+		this.acertadasM = acertadasM;
+	}
+	
+	public void actualizarAcertadasM(int acertadasM) {
 		this.acertadasM += acertadasM;
 	}
 
@@ -116,7 +132,11 @@ public class Jugador {
 	}
 
 	public void setTotal(int total) {
-		this.total += total;
+		this.total = total;
+	}
+	
+	public void actualizarTotal() {
+		this.total += getPuntosActuales();
 	}
 
 	public void registrarObs(Observer o){
