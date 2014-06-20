@@ -2,7 +2,6 @@ package logica;
 
 public abstract class Juego {
 	
-
 	private String categoria;
 	private IPregunta[] preguntas;
 	private Jugador[] jugadores;

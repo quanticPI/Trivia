@@ -253,19 +253,18 @@ public class jugar extends JDialog {
 		PreguntaBasica[] preguntas = pB.toArray(new PreguntaBasica[10]);
 		IPregunta[] preguntaDecorada = new IPregunta[10];
 		String dif = this.get_dificultad();
-		if (dif.equals("Facil")) {
-			for (int i =0; i < preguntas.length; i++){
-				String[] res =  controlador.get_respuestas(preguntas[i]);
-				IPregunta p = new PreguntaFacil(preguntas[i], res);
-				preguntaDecorada[i] = p ;
-			}
-			
+	 if (dif.equals("Facil")) {
+		for (int i =0; i < preguntas.length; i++){
+			String[] res =  controlador.get_respuestas(preguntas[i]);
+			IPregunta p = new PreguntaFacil(preguntas[i], res);
+			preguntaDecorada[i] = p ;
+		}
+		
 		} else if (dif.equals("Dificil")){
 			for (int i =0; i < preguntas.length; i++){
 				IPregunta p = new PreguntaDificil(preguntas[i], controlador.get_respuestas(preguntas[i]));
 				preguntaDecorada[i] = p ;
-			} 
-		}
+			} }
 	 	juego.setPreguntas(preguntaDecorada);
 	 
 	 

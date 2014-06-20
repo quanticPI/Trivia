@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,12 +49,17 @@ public class Trivia {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Trivia.class.getResource("/imagenes/interrogante-o-ayuda-049.png")));
 		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(51, 153, 204));
-		frame.setBounds(100, 100, 450, 260);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 480, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Fondo f = new Fondo();
+		f.setBounds(5, 5, 5, 5);
+		frame.setContentPane(f);
 		
 		btnCrearUsuario = new JButton("Crear Usuario");
+		btnCrearUsuario.setBounds(10, 113, 230, 23);
 		controlador = Controlador.getInstance();
 		
 		btnCrearUsuario.addActionListener(new ActionListener(){ 
@@ -64,6 +70,7 @@ public class Trivia {
 	
 		
 		btnJugar = new JButton("Jugar");
+		btnJugar.setBounds(10, 11, 230, 23);
 		
 		btnJugar.addActionListener(new ActionListener(){ 
 			public void actionPerformed(ActionEvent evt){
@@ -73,35 +80,42 @@ public class Trivia {
 	
 		
 		btnVerPuntuacion = new JButton("Ver Puntuaci\u00F3n");
+		btnVerPuntuacion.setBounds(10, 166, 230, 23);
 		
 		btnVerPuntuacion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt){
 				verPuntuacionActionPerformed(evt);
 			}
 			});
+		f.setLayout(null);
 	
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(31)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnVerPuntuacion, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-						.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-					.addGap(308))
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnCrearUsuario, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(309))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnVerPuntuacion, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(309, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnJugar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(309))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(57)
+					.addGap(56)
 					.addComponent(btnJugar)
-					.addGap(28)
+					.addGap(46)
 					.addComponent(btnCrearUsuario)
-					.addGap(29)
+					.addGap(37)
 					.addComponent(btnVerPuntuacion)
-					.addContainerGap(49, Short.MAX_VALUE))
+					.addContainerGap(64, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 				
@@ -120,7 +134,7 @@ public class Trivia {
 
 	public void jugarActionPerformed(ActionEvent evt){
 		try{
-			jugar ju = new jugar(controlador); 
+			jugar ju = new jugar(controlador);
 			ju.setVisible(true);	
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -136,6 +150,4 @@ public class Trivia {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-
 }
